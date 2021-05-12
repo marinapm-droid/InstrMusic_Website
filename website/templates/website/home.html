@@ -1,0 +1,23 @@
+{% extends 'website/base.html' %}
+
+{% block main %}
+    <h3>Home</h3>
+    <p>This is the home page</p>
+
+
+    {{ hora }}
+    {% if hora < 12 %}
+        <p>Bom dia, são {{ hora }} horas.</p>
+    {% else %}
+        <p>Boa tarde, são {{ hora }} horas.</p>
+    {% endif %}
+
+    <p>Exemplos de flores</p>
+     <ul>
+    {% for item in lista %}
+        <li>{{ item }}</li>
+    {% endfor %}
+    </ul>
+
+
+{% endblock %}

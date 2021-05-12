@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>21802381 - PW</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'website/css/base.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <header class="jumbotron text-center">
+        <h1>PW - 21802381</h1>
+        <p>Website Django e Python</p>
+        <nav>
+            <a href="{% url 'website:home' %}" class="btn btn-info">Home</a>
+            <a href="{% url 'website:about' %}" class="btn btn-info">About</a>
+            <a href="{% url 'website:contact_us' %}" class="btn btn-info">Contact Us</a>
+        </nav>
+    </header>
+    <article class="container">
+        <main class="col-sm-6">
+            {% block main %}
+	        {% endblock main %}
+        </main>
+        <aside class="col-sm-6">
+            {% load static %}
+            <img src="{% static 'website/images/imagem.jpg' %}" alt="image_1">
+        </aside>
+    </article>
+    <footer>Programação Web 20/21 ULHT</footer>
+</body>
+</html>
