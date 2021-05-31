@@ -9,12 +9,14 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 from environs import Env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-import env as env
+if os.path.exists('env.py'):
+    import env as env
+
 env=Env()
 env.read_env()
 
