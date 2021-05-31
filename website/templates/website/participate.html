@@ -1,0 +1,136 @@
+{% extends 'website/base.html' %}
+{% load static %}
+
+
+<style>
+    {% block style %}
+
+
+        main {
+            grid-area: main;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            grid-template-rows: 1fr 5fr 1fr;
+
+            grid-template-areas:
+            "subheader subheader subheader subheader subheader"
+            ". form form form ."
+            "subfooter subfooter subfooter subfooter subfooter";
+        }
+
+        form {
+            text-align: start;
+            grid-area: form;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #name_surname {
+            display: flex;
+        }
+
+        #name_surname p:last-child {
+            padding-left: 15px;
+        }
+
+        legend {
+            padding: 20px 0px 20px 00px;
+            font-size: xx-large;
+        }
+
+        #email {
+            align-self: center;
+            font-size: 100%;
+            text-decoration: none;
+            padding: 55px 0px 50px 0px;
+            color: #4974a5;
+        }
+
+
+        #email:active {
+            color: #76918F;
+        }
+
+
+        input {
+            background-color: #eee;
+            border: none;
+            width: 100%;
+            border-radius: 0;
+            font-size: 16px;
+            color: #000000;
+            padding: 16px;
+        }
+
+        input[type=checkbox] {
+            width: auto;
+        }
+
+        fieldset p {
+            color: rgb(71, 71, 71);
+        }
+
+        fieldset {
+            border: 0;
+        }
+
+
+
+
+        @media screen and (max-width: 600px) {
+
+            main {
+                grid-area: main;
+                display: grid;
+                grid-template-columns: 1fr 10fr 1fr;
+                grid-template-rows: 1fr 5fr 1fr;
+
+                grid-template-areas:
+                "subheader subheader subheader"
+                ". form ."
+                "subfooter subfooter subfooter";
+            }
+
+            input {
+                background-color: #eee;
+                border: none;
+                width: 100%;
+                border-radius: 0;
+                font-size: 15px;
+                color: #000000;
+                padding: 16px;
+            }
+        }
+
+    {% endblock style %}
+
+</style>
+
+
+
+{% block main %}
+
+    <article id="subheader">
+        Participate
+    </article>
+
+    <form method="POST" action="">
+        {% csrf_token %}
+        <label>{{ form.name.label_tag}}</label>
+        {{ form.name}}
+        <label>{{ form.surname.label_tag}}</label>
+        {{ form.surname}}<br>
+        <label>{{ form.email.label_tag}}</label>
+        {{ form.email}}<br>
+        <label>{{ form.instrument.label_tag}}</label>
+        {{ form.instrument}}<br>
+
+        <input type="submit" value="SUBMIT" lang="pt">
+
+    </form>
+
+    <a href="{% url 'website:events_details' events_id %}">
+        <button>Cancel</button>
+    </a>
+{% endblock main %}
+

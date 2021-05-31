@@ -1,23 +1,326 @@
 {% extends 'website/base.html' %}
 
-{% block main %}
-    <h3>Home</h3>
-    <p>This is the home page</p>
+{% load static %}
+
+<style>
+
+    {% block style %}
 
 
-    {{ hora }}
-    {% if hora < 12 %}
-        <p>Bom dia, são {{ hora }} horas.</p>
-    {% else %}
-        <p>Boa tarde, são {{ hora }} horas.</p>
-    {% endif %}
+        main {
+            grid-area: main;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 0.6fr 0fr 0.7fr 1.7fr 1fr 0fr;
 
-    <p>Exemplos de flores</p>
-     <ul>
-    {% for item in lista %}
-        <li>{{ item }}</li>
-    {% endfor %}
-    </ul>
+            grid-template-areas:
+            "subheader subheader subheader"
+            "sub_subheader sub_subheader sub_subheader"
+            ". num ."
+            "explanation explanation explanation"
+            "sub_subfooter sub_subfooter sub_subfooter"
+            "subfooter subfooter subfooter";
+        }
+
+        #sub_subfooter {
+            grid-area: sub_subfooter;
+            text-align: center;
+
+        }
 
 
-{% endblock %}
+
+        #num {
+            grid-area: num;
+            text-align: center;
+            display: flex;
+            flex-direction: row;
+        }
+
+        #num > p,
+        #sub_subfooter p {
+            font-size: 60px;
+            padding-bottom: 50px;
+        }
+
+        #num p {
+            font-size: 30px;
+        }
+
+        #num_txt_1,
+        #num_txt_2,
+        #num_txt_3 {
+            padding: 0px 80px 0px 80px;
+        }
+
+
+
+        #explanation {
+            grid-area: explanation;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #explanation_1,
+        #explanation_2 {
+            display: flex;
+            flex-direction: row;
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+
+        #explanation_1_txt > p,
+        #explanation_2_txt > p {
+            font-size: 40px;
+        }
+
+        #explanation_1_txt,
+        #explanation_2_txt {
+            width: 50%;
+            background-color: #eee;
+        }
+
+        #explanation_1_txt,
+        #explanation_2_txt {
+            padding-top: 120px;
+            padding-left: 50px;
+            padding-right: 50px;
+        }
+
+        #explanation_1_txt p:last-child,
+        #explanation_2_txt p:last-child {
+            font-size: 23px;
+            color: rgb(63, 63, 63)
+        }
+
+
+        #grafico {
+            width: 50%;
+            padding: 50px;
+            background-color: #8f769181;
+        }
+
+        rect {
+            fill: #8f7691;
+            opacity: 0.4;
+        }
+
+        .bar {
+            fill: white;
+            opacity: 1;
+        }
+
+        #subheader p {
+            text-align: start;
+            padding-left: 100px;
+        }
+
+        #subheader p:first-child {
+            font-size: 100px;
+        }
+
+        #subheader p:last-child {
+            color: white;
+        }
+
+        button {
+            color: white;
+            width: auto;
+            padding: 10px 20px;
+            background: #4974a5;
+            border: 0 none;
+            cursor: pointer;
+            -webkit-border-radius: 30px;
+            border-radius: 30px;
+        }
+
+        @media screen and (max-width: 1120px) {
+
+            #explanation {
+                justify-content: center;
+            }
+
+            #explanation_1 {
+                flex-direction: column;
+                padding-left: 0px;
+                padding-right: 0px;
+                padding-bottom: 70px;
+
+            }
+
+            #explanation_2 {
+                flex-direction: column-reverse;
+                padding-left: 0px;
+                padding-right: 0px;
+            }
+
+
+            main {
+                grid-area: main;
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                grid-template-rows: 0.4fr 0fr 0.3fr 2fr 1fr 0fr;
+
+                grid-template-areas:
+                "subheader subheader subheader"
+                "sub_subheader sub_subheader sub_subheader"
+                ". num ."
+                "explanation explanation explanation"
+                "sub_subfooter sub_subfooter sub_subfooter"
+                "subfooter subfooter subfooter";
+            }
+
+            #explanation_1_txt,
+            #explanation_2_txt {
+                width: 100%;
+                background-color: #eee;
+            }
+
+            #explanation_1_txt,
+            #explanation_2_txt {
+                padding: 5% 5% 5% 5%;
+            }
+
+            iframe {
+                width: 100%;
+            }
+
+            #grafico {
+                width: 100%;
+                background-color: #8f769181;
+                padding: 10%;
+            }
+
+        }
+
+
+        @media screen and (max-width: 1040px) {
+            #num {
+                grid-area: num;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+            }
+
+            #num_txt_1,
+            #num_txt_2 {
+                padding-bottom: 20%;
+            }
+
+
+        }
+
+        @media screen and (max-width: 650px) {
+
+
+            #subheader p {
+                text-align: start;
+                padding-left: 50px;
+                font-size: 100% !important;
+            }
+
+        }
+
+    {% endblock style %}
+
+</style>
+
+<body>
+
+
+<main>
+    {% block main %}
+
+    <article id="subheader">
+        <p>Play music</p>
+        <p>everywhere and anywhere</p>
+        <p><a href="{% url 'website:download' %}">
+            <button>Download</button>
+        </a></p>
+
+    </article>
+    <article id="sub_subheader">
+        <p>Move To Play</p>
+    </article>
+    <article id="num">
+        <section id="num_txt_1">
+            <figure><img src="{% static 'website/images/1.png'%}"></figure>
+            <p>Set Settings</p>
+        </section>
+        <section id="num_txt_2">
+            <figure><img src="{% static 'website/images/2.png'%}"></figure>
+            <p>Select Sensor, Sound, Effect</p>
+        </section>
+        <section id="num_txt_3">
+            <figure><img src="{% static 'website/images/3.png'%}"></figure>
+            <p>Move</p>
+        </section>
+    </article>
+
+    <article id="explanation">
+        <section id="explanation_1">
+            <section id="explanation_1_txt">
+                <p>HOW DOES IT WORK?</p>
+                <hr>
+                <br>
+                <p>InstrMusic works in a "3d context", in which the dimensions are: sound, effect and sensor. The
+                    user selects a sound, an effect and a sensor, to then be sent to supercollider, where the final
+                    sound
+                    will be delivered.</p>
+            </section>
+            <img id="grafico" src="{% static 'website/images/3D.png'%}">
+        </section>
+        <section id="explanation_2">
+            <iframe width="50%" height="430" src="https://www.youtube.com/embed/EEc7ewX-8Fw"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            <section id="explanation_2_txt">
+                <p>APP DEMONSTRATION</p>
+                <hr>
+                <br>
+                <p>In the following video, we can see a little demonstration of what InstrMusic is capable to do.
+                    Select a sensor, a sound, an effect and start making your own music right away!
+                </p>
+            </section>
+        </section>
+
+    </article>
+
+    <article id="sub_subfooter">
+        <p>Click on the words to find out more!</p>
+        <svg width="275px" height="500px">
+            <image href="{% static 'website/images/wordcloud.png'%}"/>
+            <a href="https://supercollider.github.io/" target="_blank">
+                <rect x="10" y="395" rx="5" ry="5" width="100" height="10"/>
+            </a>
+            <a href="https://www.android.com" target="_blank">
+                <rect x="165" y="395" rx="5" ry="5" width="85" height="20"/>
+            </a>
+            <a href="https://www.fender.com/articles/tech-talk/pedal-board-primer-reverb" target="_blank">
+                <rect x="15" y="40" rx="5" ry="5" width="85" height="20"/>
+            </a>
+            <a href="https://en.wikipedia.org/wiki/Accelerometer" target="_blank">
+                <rect x="100" y="450" rx="5" ry="5" width="105" height="13"/>
+            </a>
+            <a href="https://www.geeksforgeeks.org/various-smartphone-sensors/" target="_blank">
+                <rect x="100" y="10" rx="5" ry="5" width="85" height="20"/>
+            </a>
+            <a href="https://blog.landr.com/audio-effects-plugins-guide/sensors/" target="_blank">
+                <rect x="185" y="25" rx="5" ry="5" width="55" height="15"/>
+            </a>
+            <a href="https://www.jtc.org/some-common-sounds/" target="_blank">
+                <rect x="24" y="413" rx="5" ry="5" width="80" height="20"/>
+            </a>
+        </svg>
+        <figcaption><a href="https://wordart.com/" target="_blank">Wordcloud</a></figcaption>
+
+    </article>
+
+
+    {% endblock main %}
+
+</main>
+
+</body>
+

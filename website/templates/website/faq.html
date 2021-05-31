@@ -1,0 +1,249 @@
+{% extends 'website/base.html' %}
+{% load static %}
+
+
+<style>
+    {% block style %}
+
+        main {
+            grid-area: main;
+            display: grid;
+            grid-template-columns: 1fr 6fr 1fr;
+            grid-template-rows: 1fr 1.2fr 0.3fr 0fr 3.5fr 0.5fr;
+            grid-template-areas:
+            "subheader subheader subheader"
+            ". instructions ."
+            ". . ."
+            ". sub_subheader ."
+            ". q_a ."
+            "subfooter subfooter subfooter";
+        }
+
+        #instructions {
+            grid-area: instructions;
+            background-image: url("../../static/website/images/instruction.jpg");
+            padding-top: 30px;
+        }
+
+        #instructions p {
+            padding-left: 80px;
+            font-size: 200%;
+        }
+
+        #instructions p:nth-child(1) {
+            font-size: 280%;
+        }
+
+        #instructions p:nth-child(3) {
+            padding-top: 20px;
+            font-size: 100%;
+        }
+
+        #q_a {
+            text-align: start;
+            grid-area: q_a;
+            display: flex;
+        }
+
+        #q_a_1 {
+            padding-right: 50px;
+        }
+
+        #q_a_1 p,
+        #q_a_2 p {
+            background-color: #eee;
+            border: none;
+            width: 100%;
+            border-radius: 0;
+            font-size: 16px;
+            color: #000000;
+            padding-left: 15px;
+            padding-right: 15px;
+            font-weight: 500;
+        }
+
+        #q_a_1 p:nth-child(even),
+        #q_a_2 p:nth-child(even) {
+            color: rgb(68, 68, 68);
+            padding-bottom: 15px;
+            font-size: 15px;
+
+        }
+
+        #q_a_1 p:nth-child(odd),
+        #q_a_2 p:nth-child(odd) {
+            color: purple;
+            padding-bottom: 5px;
+            padding-top: 15px;
+        }
+
+        button {
+            color: white;
+            width: auto;
+            padding: 10px 20px;
+            background: #4974a5;
+            border: 0 none;
+            cursor: pointer;
+            -webkit-border-radius: 30px;
+            border-radius: 30px;
+        }
+
+        @media screen and (max-width: 925px) {
+
+            main {
+                grid-area: main;
+                display: grid;
+                grid-template-columns: 1fr 6fr 1fr;
+                grid-template-rows: 1fr 1.3fr 0.3fr 0fr 5fr 0.5fr;
+                grid-template-areas:
+                "subheader subheader subheader"
+                ". instructions ."
+                ". . ."
+                ". sub_subheader ."
+                ". q_a ."
+                "subfooter subfooter subfooter";
+            }
+
+
+            #q_a {
+                flex-direction: column;
+            }
+
+            #q_a_1 {
+                padding-bottom: 50px;
+                padding-right: 0px;
+
+            }
+        }
+
+        @media screen and (max-width: 655px) {
+            #instructions p {
+                padding-left: 50px;
+                font-size: 200%;
+            }
+
+            #sub_subheader {
+                font-size: 20px;
+            }
+
+            main {
+                grid-area: main;
+                display: grid;
+                grid-template-columns: 1fr 6fr 1fr;
+                grid-template-rows: 1fr 1.5fr 0.3fr 0fr 7fr 0.5fr;
+                grid-template-areas:
+                "subheader subheader subheader"
+                ". instructions ."
+                ". . ."
+                ". sub_subheader ."
+                ". q_a ."
+                "subfooter subfooter subfooter";
+            }
+
+        }
+
+
+        @media screen and (max-width: 455px) {
+
+            main {
+                grid-area: main;
+                display: grid;
+                grid-template-columns: 1fr 6fr 1fr;
+                grid-template-rows: 1.5fr 0fr 9fr 1.8fr 0.2fr 0.5fr;
+                grid-template-areas:
+                "subheader subheader subheader"
+                ". sub_subheader ."
+                ". q_a ."
+                ". instructions ."
+                ". . ."
+                "subfooter subfooter subfooter";
+            }
+
+        }
+    {% endblock style %}
+
+</style>
+
+<body>
+
+
+<main>
+    {% block main %}
+
+        <article id="subheader">
+            Help Center
+        </article>
+
+        <article id="sub_subheader">
+            <p>Frequently Asked Questions</p>
+            <hr>
+        </article>
+
+        <article id="instructions">
+
+            <p>APP</p>
+            <p>INSTRUCTIONS</p>
+            <p>See our application manual</p>
+
+            <p><a href="{% url 'website:instructions' %}">
+                <button>Android</button>
+            </a></p>
+        </article>
+
+        <article id="q_a">
+            <section id="q_a_1">
+                <p>WHEN WILL INSTRMUSIC BE AVAILABLE?</p>
+                <p>We are still working very hard on it, 26th June 2021 it will be released!</p>
+                <br>
+                <br>
+                <p>IS INSTRMUSIC COMPATIBLE WITH ANDROID AND IOS OPERATING SYSTEMS?</p>
+                <p>At the moment it is only available for Android, but with future plans for iOS.</p>
+                <br>
+                <br>
+                <p>IS THE APP FREE?</p>
+                <p>The App download is free. However we may include paid features in the future.</p>
+                <br>
+                <br>
+                <p>HAVE YOU DEVELOPED AN APP WEB FOR INSTRMUSIC APP?</p>
+                <p>InstrMusic can only work from its native App.</p>
+            </section>
+            <section id="q_a_2">
+                <p>CAN I RECORD MY TRACKS?</p>
+                <p>Yes! You can record all your tracks and reuse them as new sounds!</p>
+                <br>
+                <br>
+                <p>CAN I STREAM MY INSTRMUSIC ON YOUTUBE?</p>
+                <p>Not for now, but we don't exclude this option for future lauches</p>
+                <br>
+                <br>
+                <p>HOW MANY GADGETS WILL I NEED TO START PLAYING?</p>
+                <p>The wonder of Instrmusic is that you only need your cellphone and nothing else!</p>
+                <br>
+                <br>
+                <p>DO I NEED INTERNET CONNECTION TO PLAY MUSIC?</p>
+                <p>Yes, the only way you can play music is with a internet connection.</p>
+            </section>
+        </article>
+
+        {% block article %}
+
+            <article id="subfooter">
+                <aside id="a_subfooter">
+                    <a href="{% url 'website:contact_us' %}">
+                        <picture>
+                            <source srcset="{% static 'website/images/contact_big.png' %}" media="(max-width: 600px)">
+                            <img src="{% static 'website/images/contact.png' %}" alt="img_1">
+                        </picture>
+                    </a>
+                </aside>
+                <p id="subfooter_txt">Ready to take your music to the next level?</p>
+            </article>
+        {% endblock article %}
+
+    {% endblock main %}
+
+</main>
+
+
+</body>
+

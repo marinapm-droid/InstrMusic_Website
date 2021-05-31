@@ -1,0 +1,274 @@
+{% extends 'website/base.html' %}
+{% load static %}
+
+
+<style>
+    {% block style %}
+
+
+        main {
+            grid-area: main;
+            display: grid;
+            grid-template-columns: 1fr 3fr 1fr;
+            grid-template-rows: 1fr 0fr 10fr 1fr;
+            grid-template-areas:
+            "subheader subheader subheader"
+            ". sub_subheader ."
+            ". manual ."
+            "subfooter subfooter subfooter";
+        }
+
+
+        #manual {
+            grid-area: manual;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #um,
+        #dois,
+        #tres,
+        #quatro {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            padding-top: 100px;
+
+        }
+
+
+        #um p:first-child,
+        #dois p:first-child,
+        #tres p:first-child,
+        #quatro p:first-child {
+            font-size: 40px;
+            color: purple;
+        }
+
+        #um_txt {
+            width: 50%;
+        }
+
+        #um figure {
+            text-align: end;
+            width: 50%;
+        }
+
+        #dois_txt {
+            width: 50%;
+            text-align: end;
+        }
+
+        #dois_img, #quatro_img {
+            text-align: start;
+            width: 50%;
+        }
+
+        #tres_txt {
+            width: 50%;
+        }
+
+        #tres_img, #quatro_txt {
+            text-align: end;
+            width: 50%;
+        }
+
+        iframe {
+            background-color: #543257;
+        }
+
+        .dot {
+            text-align: center;
+            height: 25px;
+            width: 25px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        @media screen and (max-width: 1040px) {
+            main {
+                grid-area: main;
+                display: grid;
+                grid-template-columns: 1fr 10fr 1fr;
+                grid-template-rows: 1fr 0.5fr 14fr 1fr;
+                grid-template-areas:
+                "subheader subheader subheader"
+                ". sub_subheader ."
+                ". manual ."
+                "subfooter subfooter subfooter";
+            }
+
+
+            #um,
+            #dois,
+            #tres,
+            #quatro {
+                flex-direction: column;
+                align-items: center;
+
+            }
+
+            #um p:first-child,
+            #dois p:first-child,
+            #tres p:first-child,
+            #quatro p:first-child {
+                font-size: 25px;
+                color: purple;
+            }
+
+            #manual p {
+                text-align: start;
+            }
+
+            #dois,
+            #quatro {
+                flex-direction: column-reverse;
+            }
+
+            #tres_img {
+                text-align: start;
+            }
+
+            #um figure,
+            #dois_img,
+            #tres_img,
+            #quatro_img {
+                padding-top: 50px;
+                text-align: center;
+                width: 100%;
+
+            }
+
+            #dois_img p,
+            #tres_img p,
+            #quatro_img p {
+                text-align: center;
+            }
+
+        }
+
+    {% endblock style %}
+
+</style>
+
+
+<body>
+
+
+<main>
+    {% block main %}
+
+        <article id="subheader">
+            Help Center
+        </article>
+
+        <article id="sub_subheader">
+            <p>APP Instructions</p>
+            <hr>
+        </article>
+
+
+        <article id="manual">
+
+
+            <section id="um">
+                <section id="um_txt">
+                    <p>DOWNLOAD SUPERCOLLIDER FILE</p>
+                    <p>1. Click on the image to download the file</p>
+                    <p>2. Open it on your IDE</p>
+                    <p>3. It runs itself!</p>
+                </section>
+                <figure>
+                    <a href="../../../TFCInstrMusic.zip" target="_blank" download="startup.scd"><img
+                            src="{% static 'website/images/supercollider.png' %}"></a>
+                    <figcaption><a href="https://dl2.macupdate.com/images/icons256/30548.png?time=1603806076"
+                                   target="_blank">SuperCollider</a></figcaption>
+                    <details>You can download SuperCollider IDE <a href="https://supercollider.github.io/download"
+                                                                   target="_blank">here</a></details>
+                </figure>
+
+            </section>
+
+            <section id="dois">
+                <section id="dois_img">
+                    <iframe src="{% static 'website/images/app_manual/log_in.jpg' %}" width="275px" height="470px"
+                            name="foto1"></iframe>
+                    <p>
+                        <a href="{% static 'website/images/app_manual/log_in.jpg' %}" target="foto1"><span
+                                class="dot">1</span></a>
+                        <a href="{% static 'website/images/app_manual/sign_up.jpg' %}" target="foto1"><span class="dot">2</span></a>
+                        <a href="{% static 'website/images/app_manual/confirmation_code.jpg' %}" target="foto1"><span
+                                class="dot">3</span></a>
+                    </p>
+                </section>
+                <section id="dois_txt">
+                    <p>CREATE ACCOUNT</p>
+                    <p>1. Select "New User"</p>
+                    <p>2. Complete the form</p>
+                    <p>3. Insert confirmation code</p>
+                </section>
+            </section>
+
+            <section id="tres">
+                <section id="tres_txt">
+                    <p>SETTINGS</p>
+                    <p>1. Go to Settings</p>
+                    <p>2. Insert host</p>
+                    <p>3. Insert port</p>
+                </section>
+                <section id="tres_img">
+                    <iframe src="{% static 'website/images/app_manual/settings.jpg' %}" width="275px" height="470px">
+                    </iframe>
+                </section>
+            </section>
+
+            <section id="quatro">
+                <section id="quatro_img">
+                    <iframe src="{% static 'website/images/app_manual/sensor_list.jpg' %}" width="275px" height="470px"
+                            name="foto2"></iframe>
+
+                    <p>
+                        <a href="{% static 'website/images/app_manual/sensor_list.jpg' %}" target="foto2"><span
+                                class="dot">1</span></a>
+                        <a href="{% static 'website/images/app_manual/effects_list.jpg' %}" target="foto2"><span
+                                class="dot">2</span></a>
+                        <a href="{% static 'website/images/app_manual/sound_list.jpg' %}" target="foto2"><span
+                                class="dot">3</span></a>
+                        <a href="{% static 'website/images/app_manual/home_page.jpg' %}" target="foto2"><span
+                                class="dot">4</span></a>
+                    </p>
+                </section>
+                <section id="quatro_txt">
+                    <p>PLAY</p>
+                    <p>1. Select a Sensor</p>
+                    <p>2. Select an Effect </p>
+                    <p>3. Select a Sound</p>
+                    <p>4. Click the play button</p>
+                </section>
+
+            </section>
+
+        </article>
+        {% block article %}
+
+            <article id="subfooter">
+                <aside id="a_subfooter">
+                    <a href="{% url 'website:contact_us' %}">
+                        <picture>
+                            <source srcset="{% static 'website/images/contact_big.png' %}" media="(max-width: 600px)">
+                            <img src="{% static 'website/images/contact.png' %}" alt="img_1">
+                        </picture>
+                    </a>
+                </aside>
+                <p id="subfooter_txt">Ready to take your music to the next level?</p>
+            </article>
+        {% endblock article %}
+
+    {% endblock main %}
+
+</main>
+
+
+</body>

@@ -1,6 +1,190 @@
 {% extends 'website/base.html' %}
 
+
+<style>
+    {% block style %}
+
+        main {
+            grid-area: main;
+            display: grid;
+            grid-template-columns: 1fr 6fr 1fr;
+            grid-template-rows: 1fr 1fr 0.5fr 0.8fr 2fr 0.5fr;
+            grid-template-areas:
+            "subheader subheader subheader"
+            ". website ."
+            ". sub_subheader ."
+            ". about ."
+            " . middle ."
+            "subfooter subfooter subfooter";
+        }
+
+        #about {
+            grid-area: about;
+            font-size: 100%;
+            text-align: center;
+        }
+
+        #website {
+            grid-area: website;
+            background-image: url("../../static/website/images/website_background.jpg");
+            padding-top: 30px;
+        }
+
+        #middle_content {
+            grid-area: middle;
+            display: flex;
+            flex-direction: row;
+            background-color: #eee;
+        }
+
+        #middle_content #middle_text {
+            width: 50%;
+            padding: 30px;
+
+        }
+
+        #middle_content #middle_text p:first-child {
+            font-size: 215%;
+        }
+
+        #middle_content #middle_text p:last-child {
+            color: rgb(70, 70, 70);
+        }
+
+
+        #subheader + article {
+            padding-left: 80px;
+            font-size: 200%;
+        }
+
+        iframe {
+            width: 560px;
+            height: 315px;
+        }
+
+
+        button {
+            color: white;
+            width: auto;
+            padding: 10px 20px;
+            background: #4974a5;
+            border: 0 none;
+            cursor: pointer;
+            -webkit-border-radius: 30px;
+            border-radius: 30px;
+        }
+
+        @media screen and (max-width: 1315px) {
+
+            #middle_content {
+                grid-area: middle;
+                display: flex;
+                flex-direction: column;
+                background-color: #eee;
+            }
+
+            #middle_content #middle_text {
+                width: 100%;
+            }
+
+            #middle_content #middle_video {
+                text-align: center;
+            }
+
+            main {
+                grid-area: main;
+                display: grid;
+                grid-template-columns: 1fr 6fr 1fr;
+                grid-template-rows: 1.5fr 1fr 0.5fr 1fr 4fr 0.5fr;
+                grid-template-areas:
+            "subheader subheader subheader"
+            ". website ."
+            ". sub_subheader ."
+            ". about ."
+            " . middle ."
+            "subfooter subfooter subfooter";
+            }
+
+
+        }
+
+        @media screen and (max-width: 650px) {
+            iframe {
+                width: 260px;
+                height: 115px;
+            }
+
+            #sub_subheader {
+                font-size: 20px;
+            }
+
+
+            main {
+                grid-area: main;
+                display: grid;
+                grid-template-columns: 1fr 6fr 1fr;
+                grid-template-rows: 0.8fr 0fr 1fr 2fr 0.1fr 0.1fr 1fr;
+                grid-template-areas:
+            "subheader subheader subheader"
+            ". sub_subheader ."
+            ". about ."
+            " . middle ."
+            ". . ."
+            ". website ."
+            "subfooter subfooter subfooter";
+
+            }
+        }
+    {% endblock style %}
+</style>
+
+
 {% block main %}
-    <h3>About</h3>
-    <p>Programação Web - Lab 6</p>
-{% endblock %}
+
+    <article id="subheader">
+        About
+    </article>
+
+    <article id="website">
+        <p>SEE DETAILS</p>
+        <p>ABOUT THE WEBSITE</p>
+        <p><a href="about_website.html">
+            <button>About Website</button>
+        </a></p>
+    </article>
+
+    <article id="sub_subheader">
+        <p>About Us</p>
+        <hr>
+    </article>
+
+    <article id="about">
+        <p>InstrMusic is a college project created by two friends, that are music lovers, and one of them an amateur
+            musician, that decided to work together to create an app that allows anyone to create music with their
+            phone
+            sensors. Select a sensor, select a sound, select an effect and start making your own music whenever you
+            feel like it!</p>
+
+    </article>
+
+
+
+    <article id="middle_content">
+        <section id="middle_text">
+            <p>Supercollider</p>
+            <p>The magic happens in SuperCollider, a platform for audio synthesis used by musicians, artists and
+                researchers working with sound. The software is totally free and open source! In the video, we can
+                see two musicians creating live music with SuperCollider, and it's just one example of the many
+                things that we can do with this programming language.</p>
+        </section>
+        <section id="middle_video">
+            <iframe src="https://www.youtube.com/embed/Ix2b_qFYfAA" title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+        </section>
+
+    </article>
+
+
+{% endblock main %}
+

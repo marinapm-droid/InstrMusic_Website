@@ -1,0 +1,152 @@
+{% extends 'website/base.html' %}
+{% load static %}
+
+
+<style>
+    {% block style %}
+
+
+        main {
+            grid-area: main;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            grid-template-rows: 1fr 5fr 1fr;
+
+            grid-template-areas:
+            "subheader subheader subheader subheader subheader"
+            ". form form form ."
+            "subfooter subfooter subfooter subfooter subfooter";
+        }
+
+        .event {
+            text-align: start;
+            grid-area: form;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #name_surname {
+            display: flex;
+        }
+
+        #name_surname p:last-child {
+            padding-left: 15px;
+        }
+
+        legend {
+            padding: 20px 0px 20px 00px;
+            font-size: xx-large;
+        }
+
+        #email {
+            align-self: center;
+            font-size: 100%;
+            text-decoration: none;
+            padding: 55px 0px 50px 0px;
+            color: #4974a5;
+        }
+
+
+        #email:active {
+            color: #76918F;
+        }
+
+
+        input {
+            background-color: #eee;
+            border: none;
+            width: 100%;
+            border-radius: 0;
+            font-size: 16px;
+            color: #000000;
+            padding: 16px;
+        }
+
+        input[type=checkbox] {
+            width: auto;
+        }
+
+        input[type=submit] {
+            color: white;
+            width: auto;
+            padding: 10px 20px;
+            background: #4974a5;
+            border: 0 none;
+            cursor: pointer;
+            -webkit-border-radius: 30px;
+            border-radius: 30px;
+        }
+
+        input[type=submit]:hover {
+            background-color: #406691;
+        }
+
+        input[type=submit]:active {
+            background-color: #76918F;
+        }
+
+        fieldset p {
+            color: rgb(71, 71, 71);
+        }
+
+        fieldset {
+            border: 0;
+        }
+
+        label {
+            position: relative;
+        }
+
+
+
+        @media screen and (max-width: 600px) {
+
+            main {
+                grid-area: main;
+                display: grid;
+                grid-template-columns: 1fr 10fr 1fr;
+                grid-template-rows: 1fr 5fr 1fr;
+
+                grid-template-areas:
+                "subheader subheader subheader"
+                ". form ."
+                "subfooter subfooter subfooter";
+            }
+
+            input {
+                background-color: #eee;
+                border: none;
+                width: 100%;
+                border-radius: 0;
+                font-size: 15px;
+                color: #000000;
+                padding: 16px;
+            }
+        }
+
+    {% endblock style %}
+
+</style>
+
+
+
+
+{% block main %}
+
+    <article id="subheader">
+        Events
+    </article>
+
+    <ul class="event">
+        {% for event in events %}
+            <li>
+                <a href=" {%  url 'website:events_details' event.id %}">{{ event.title }}: {{ event.location }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+
+{% endblock main %}
+
+
+

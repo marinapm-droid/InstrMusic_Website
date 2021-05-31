@@ -1,0 +1,479 @@
+{% extends 'website/base.html' %}
+{% load static %}
+
+
+<style>
+    {% block style %}
+
+        main {
+            grid-area: main;
+            display: grid;
+            grid-template-columns: 1fr 10fr 1fr 2fr 1fr;
+            grid-template-rows: 0.2fr 0.2fr 0.5fr 1.3fr 0.6fr 0.5fr 0.5fr 0fr;
+            grid-template-areas:
+            "subheader subheader subheader subheader subheader"
+            ". sub_subheader  sub_subheader sub_subheader ."
+            ". video video video ."
+            ". tecnicas tecnicas tecnicas ."
+            ". inventario inventario inventario."
+            ". layout layout layout ."
+            "mapa mapa mapa mapa mapa"
+            "subfooter  subfooter subfooter subfooter subfooter";
+        }
+
+        #layout {
+            grid-area: layout;
+            text-align: center;
+            display: flex;
+            flex-direction: row-reverse;
+        }
+
+        #layout_txt {
+            font-size: 90px;
+            width: 100%;
+            color: #444;
+            text-align: end;
+            padding-right: 5%;
+        }
+
+
+        #tecnicas {
+            grid-area: tecnicas;
+            padding: 0 2em;
+            font-family: Montserrat, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+            color: #444;
+            display: flex;
+            flex-direction: row-reverse;
+        }
+
+        #tecnicas table,
+        #inventario table {
+            width: 100%;
+        }
+
+        #tecnicas p {
+            font-size: 60px !important;
+            text-align: end;
+        }
+
+        #inventario {
+            grid-area: inventario;
+            padding: 0 2em;
+            font-family: Montserrat, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+            color: #444;
+            display: flex;
+            flex-direction: row;
+            padding-top: 90px;
+        }
+
+
+        #inventario p {
+            font-size: 90px !important;
+            padding-right: 200px;
+        }
+
+        #video {
+            grid-area: video;
+            display: flex;
+            flex-direction: row;
+            font-size: 90px;
+            justify-content: center;
+            color: #444;
+        }
+
+        #video iframe {
+            width: 100%;
+        }
+
+        #mapa {
+            grid-area: mapa;
+            text-align: center;
+            font-size: 90px;
+            color: #444;
+        }
+
+        #layout_img_small {
+            display: none;
+        }
+
+
+        .dot {
+            text-align: center;
+            height: 25px;
+            width: 25px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        #mapa img {
+            padding-top: 70px;
+            width: 80%;
+        }
+
+        iframe {
+            padding-left: 70px;
+        }
+
+        .rwd-table th {
+            display: none;
+        }
+
+        .rwd-table td {
+            display: block;
+        }
+
+        .rwd-table td:first-child {
+            padding-top: .5em;
+        }
+
+        .rwd-table td:last-child {
+            padding-bottom: .5em;
+        }
+
+        .rwd-table td:before {
+            content: attr(data-th) ": ";
+            font-weight: bold;
+            width: 9em;
+            display: inline-block;
+        }
+
+        .rwd-table th,
+        .rwd-table td {
+            text-align: left;
+            margin: .5em 1em;
+        }
+
+        .rwd-table {
+            background: #34495E;
+            color: #fff;
+            border-radius: .4em;
+            overflow: hidden;
+        }
+
+        .rwd-table tr {
+            border-color: #46637f;
+        }
+
+        .rwd-table th,
+        .rwd-table td:before {
+            color: #dd5;
+        }
+
+
+        @media (min-width: 465px) {
+
+            .rwd-table th,
+            .rwd-table td {
+                padding: 1em !important;
+                display: table-cell;
+                padding: .25em .5em;
+            }
+
+            .rwd-table td:before {
+                display: none;
+            }
+
+            .rwd-table th:first-child,
+            .rwd-table td:first-child {
+                padding-left: 0;
+                padding-right: 0;
+
+            }
+
+        }
+
+
+        @media screen and (max-width: 1310px) {
+            #inventario {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            #inventario p {
+                padding-right: 0px;
+
+            }
+
+            #layout {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            #layout_txt {
+                text-align: center;
+            }
+
+            #tecnicas {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            #tecnicas p {
+                font-size: 90px !important;
+            }
+
+            #video {
+                flex-direction: column;
+                align-items: center;
+
+            }
+
+
+        }
+
+        @media screen and (max-width: 1110px) {
+
+
+            #layout_txt,
+            #inventario p,
+            #tecnicas p,
+            #video,
+            #mapa {
+                font-size: 40px !important;
+            }
+
+            #mapa img {
+                padding-top: 70px;
+                width: 70%;
+            }
+
+
+        }
+
+        @media screen and (max-width: 1040px) {
+
+
+            main {
+                grid-area: main;
+                display: grid;
+                grid-template-columns: 1fr 10fr 1fr 2fr 1fr;
+                grid-template-rows: 0.15fr 0fr 0fr 0.05fr 0.5fr 0.35fr 0fr 0fr 0fr;
+                grid-template-areas:
+                "subheader subheader subheader subheader subheader"
+                ". sub_subheader  sub_subheader sub_subheader ."
+                ". video video video ."
+                ". . . . ."
+                ". tecnicas tecnicas tecnicas ."
+                ". inventario inventario inventario."
+                ". layout layout layout ."
+                "mapa mapa mapa mapa mapa"
+                "subfooter  subfooter subfooter subfooter subfooter";
+            }
+
+            #tecnicas {
+                font-size: 13px;
+            }
+
+            iframe {
+                padding-left: 0px;
+            }
+
+            #layout_img {
+                display: none;
+            }
+
+            #layout_img_small {
+                display: inline;
+            }
+
+            #layout_txt,
+            #inventario p,
+            #tecnicas p,
+            #video,
+            #mapa {
+                font-size: 40px !important;
+            }
+
+            #mapa img {
+                padding-top: 70px;
+                width: 70%;
+            }
+        }
+
+    {% endblock style %}
+
+</style>
+
+
+
+{% block main %}
+
+    <article id="subheader">
+        About
+    </article>
+
+    <article id="sub_subheader">
+        <p>About Website</p>
+        <hr>
+    </article>
+
+
+    <article id="video">
+        <p>Vídeo do Website</p>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/CkE1TZooX6U"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+    </article>
+
+    <article id="layout">
+        <p id="layout_txt">Layout</p>
+        <section id="layout_img">
+            <p>
+                <a href="{% static 'website/images/esboço/1.jpg' %}" target="foto"><span class="dot">1</span></a>
+                <a href="{% static 'website/images/esboço/2.jpg' %}" target="foto"><span class="dot">2</span></a>
+                <a href="{% static 'website/images/esboço/3.jpg' %}" target="foto"><span class="dot">3</span></a>
+                <a href="{% static 'website/images/esboço/4.jpg' %}" target="foto"><span class="dot">4</span></a>
+                <a href="{% static 'website/images/esboço/5.1.jpg' %}" target="foto"><span class="dot">5</span></a>
+                <a href="{% static 'website/images/esboço/5.2.jpg' %}" target="foto"><span class="dot">6</span></a>
+                <a href="{% static 'website/images/esboço/6.jpg' %}" target="foto"><span class="dot">7</span></a>
+            </p>
+            <iframe src="{% static 'website/images/esboço/1.jpg' %}" width="500px" height="450px" name="foto"
+                    style="border: none;"></iframe>
+        </section>
+
+        <section id="layout_img_small">
+            <p>
+                <a href="{% static 'website/images/esboço/1 - Cópia.jpg' %}" target="foto_small"><span
+                        class="dot">1</span></a>
+                <a href="{% static 'website/images/esboço/2 - Cópia.jpg' %}" target="foto_small"><span
+                        class="dot">2</span></a>
+                <a href="{% static 'website/images/esboço/3 - Cópia.jpg' %}" target="foto_small"><span
+                        class="dot">3</span></a>
+                <a href="{% static 'website/images/esboço/4 - Cópia.jpg' %}" target="foto_small"><span
+                        class="dot">4</span></a>
+                <a href="{% static 'website/images/esboço/5.1 - Cópia.jpg' %}" target="foto_small"><span
+                        class="dot">5</span></a>
+                <a href="{% static 'website/images/esboço/5.2 - Cópia.jpg' %}" target="foto_small"><span
+                        class="dot">6</span></a>
+                <a href="{% static 'website/images/esboço/6 - Cópia.jpg' %}" target="foto_small"><span
+                        class="dot">7</span></a>
+            </p>
+            <iframe src="{% static 'website/images/esboço/1 - Cópia.jpg' %}" width="300px" height="400px"
+                    name="foto_small"
+                    style="border: none;"></iframe>
+        </section>
+    </article>
+
+    <article id="tecnicas">
+        <p>Técnicas Usadas</p>
+        <table class="rwd-table">
+            <tr>
+                <th>Características</th>
+                <th>Técnicas</th>
+                <th>Exemplos</th>
+            </tr>
+            <tr>
+                <td data-th="Características">Layouts</td>
+                <td data-th="Técnicas">Usou-se o CSS grid e CSS flexbox para construção de layouts</td>
+                <td data-th="Exemplos">Utilizado em todas as páginas para posicionar as etiquetas HTML5
+                </td>
+            </tr>
+            <tr>
+                <td data-th="Características">Responsavidade</td>
+                <td data-th="Técnicas">Foram usadas media queries que adaptam o layout para telemovel e PC
+                    consoante o tamanho da
+                    janela do browser
+                </td>
+                <td data-th="Exemplos">Utilizado em todas as páginas, na página FAQ, com a utilização de media
+                    queries, quando o ecrã atinge uma certa dimensão a lista de Q&A passa de row para column;
+                    Tamanho da imagem resposivo
+                </td>
+            </tr>
+            <tr>
+                <td data-th="Características">Seletores</td>
+                <td data-th="Técnicas">Foram usados os seguintes seletores: universal, tipo, classe, id, artibuto,
+                    pseudo-classe, pseudo-atributo
+                </td>
+                <td data-th="Exemplos">
+                    Universal - aplicar a fonte a todo o código; Tipo - estilizar o header;
+                    Classe - estilizar o equilizer; Id - estilizar o menu; Atributo - estilizar o elemento 'a' que
+                    possui o atributo [target=_blank]; Pseudo-classe - estilizar o elemento 'a' quando o rato é
+                    clicado :active; Pseudo-elemento - ::first-line
+                </td>
+            </tr>
+            <tr>
+                <td data-th="Características">Etiquetas</td>
+                <td data-th="Técnicas">HTML5 main, header, article, footer, figure, aside, nav;
+                </td>
+                <td data-th="Exemplos">Utilizado em todas as páginas para definir a estrutura do site
+                </td>
+            </tr>
+            <tr>
+                <td data-th="Características">Animações</td>
+                <td data-th="Técnicas">Foram feitas animações usando keyframes que permite alterar a opacidade da
+                    imagem no footer e alterar o tamanho de umas barras criando um equalizador
+
+                </td>
+                <td data-th="Exemplos">Controlar a opacidade da imagem no sub_footer; Alterar o tamanho das barras
+                    para criar o efeito de movimento do equalizador
+                </td>
+            </tr>
+            <tr>
+                <td data-th="Características">Efeitos</td>
+                <td data-th="Técnicas">Usou-se o efeito de opacidade, e o efeito hover overlay
+                </td>
+                <td data-th="Exemplos">Opacidade utilizado na imagem do sub_footer; Hover Overlay utilizado na
+                    imagem de Download
+                </td>
+            </tr>
+            <tr>
+                <td data-th="Características">Etiquetas
+                </td>
+                <td data-th="Técnicas"> Foi utilizado etiquetas para criar conteúdo como: figcaption, details,
+                    form, SVG, a, rect
+                </td>
+                <td data-th="Exemplos">Wordcloud está dentro de uma etiqueta SVG com a sobreposicão de retângulos
+                    que possuem um link externo
+                </td>
+            </tr>
+        </table>
+    </article>
+
+    <article id="inventario">
+        <p>Inventário</p>
+        <table class="rwd-table">
+            <tr>
+                <th>Inventário</th>
+                <th>Quantidade</th>
+            </tr>
+            <tr>
+                <td data-th="Inventário">Páginas</td>
+                <td data-th="Quantidade">7</td>
+            </tr>
+            <tr>
+                <td data-th="Inventário">Imagens</td>
+                <td data-th="Quantidade">18</td>
+            </tr>
+            <tr>
+                <td data-th="Inventário">Links Externos</td>
+                <td data-th="Quantidade">10</td>
+            </tr>
+            <tr>
+                <td data-th="Inventário">Animações</td>
+                <td data-th="Quantidade">2</td>
+            </tr>
+            <tr>
+                <td data-th="Inventário">Vídeos</td>
+                <td data-th="Quantidade">3</td>
+            </tr>
+        </table>
+    </article>
+
+    <article id="mapa">
+        <p>Mapa do Website</p>
+        <picture>
+            <source srcset="{% static 'website/images/mapa_vertical.png' %}" media="(max-width: 1040px)">
+            <img src="{% static 'website/images/mapa.png' %}" alt="img_1">
+            <figcaption><a href="https://octopus.do/" target="_blank">mapa do website</a></figcaption>
+        </picture>
+    </article>
+
+{% endblock main %}
+
+

@@ -1,0 +1,96 @@
+{% extends 'website/base.html' %}
+{% load static %}
+
+
+<style>
+    {% block style %}
+
+        main {
+            grid-area: main;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1.3fr 1fr;
+            grid-template-areas:
+            "subheader subheader subheader"
+            ". download ."
+            "subfooter subfooter subfooter";
+        }
+
+
+
+        #download {
+            grid-area: download;
+            text-align: center;
+        }
+
+        #google_play {
+            opacity: 1;
+            display: block;
+            transition: .5s ease;
+        }
+
+        #text_container {
+            transition: .5s ease;
+            opacity: 0;
+            text-align: center;
+        }
+
+        #download:hover #google_play {
+            opacity: 0.3;
+        }
+
+        #download:hover #text_container {
+            opacity: 1;
+        }
+
+        #text {
+            color: #8f7691;
+            font-size: 16px;
+        }
+
+
+        @media screen and (max-width: 1070px) {
+
+            main {
+                grid-area: main;
+                display: grid;
+                grid-template-columns: 1fr;
+                grid-template-rows: 1fr 1.3fr 1fr;
+
+                grid-template-areas:
+                "subheader"
+                "download"
+                "subfooter ";
+            }
+        }
+
+    {% endblock style %}
+
+</style>
+
+<body>
+
+
+<main>
+    {% block main %}
+
+        <article id="subheader">
+            Download
+        </article>
+
+        <article id="download">
+            <figure id="google_play">
+                <img src="{% static 'website/images/google_play.png'%}">
+            </figure>
+            <section id="text_container">
+                <p id="text">⚠️Still not available 🙁</p>
+            </section>
+        </article>
+
+
+    {% endblock main %}
+
+</main>
+
+
+</body>

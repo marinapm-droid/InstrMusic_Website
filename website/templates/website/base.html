@@ -1,32 +1,112 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
+
 <head>
+    <title>About Us | InstrMusic</title>
     <meta charset="UTF-8">
-    <title>21802381 - PW</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+    <meta name="keywords" content="InstrMusic, Sensor, Sound, Effects, App, Android, OSC, Supercollider">
+    <meta name="description" content="Website sobre TFC InstrMusic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'website/images/icon_nav.ico' %}"/>
+
+
     {% load static %}
-    <link rel="stylesheet" href="{% static 'website/css/base.css' %}">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'website/css/estilos.css' %}"/>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
 </head>
+
+<style>
+    {% block style %}
+    {% endblock style %}
+</style>
+
 <body>
-    <header class="jumbotron text-center">
-        <h1>PW - 21802381</h1>
-        <p>Website Django e Python</p>
-        <nav>
-            <a href="{% url 'website:home' %}" class="btn btn-info">Home</a>
-            <a href="{% url 'website:about' %}" class="btn btn-info">About</a>
-            <a href="{% url 'website:contact_us' %}" class="btn btn-info">Contact Us</a>
+<header>
+    <h1>
+        <figure>
+            <a href="{% url 'website:home' %}">
+                <img src="{% static 'website/images/nome_branco_small.png' %}">
+            </a>
+        </figure>
+    </h1>
+
+    <div id="menu">
+        <input type="checkbox" id="nav-toggle">
+        <label for="nav-toggle">
+            <div id="nav-toggle-menu">Menu</div>
+        </label>
+
+        <nav id="nav">
+            <ul>
+                <li><a href="{% url 'website:home' %}">Home</a></li>
+                <li><a href="{% url 'website:faq' %}">Help Center</a>
+                    <ul id="nav2">
+                        <li><a href="{% url 'website:faq' %}">FAQ</a></li>
+                        <li><a href="{% url 'website:instructions' %}">Instructions</a></li>
+                    </ul>
+                </li>
+                <li><a href="{% url 'website:about' %}">About</a>
+                    <ul id="nav2">
+                        <li><a href="{% url 'website:about' %}">Us</a></li>
+                        <li><a href="{% url 'website:about_website' %}">Website</a></li>
+                    </ul>
+                </li>
+                <li><a href="{% url 'website:contact_us' %}">Contact</a>
+                    <ul id="nav2">
+                        <li><a href="{% url 'website:contact_us' %}">Form</a></li>
+                        <li><a href="{% url 'website:comments' %}">Comments</a></li>
+                        <li><a href="{% url 'website:quizz' %}">Quizz</a></li>
+                    </ul>
+                </li>
+                <li><a href="{% url 'website:download' %}"></i>Download</a></li>
+                <li><a href="{% url 'website:events' %}"></i>Events</a></li>
+                {% block logout %}
+                    {% if message %}
+                        <li><a href="{% url 'website:logout' %}"><i class="material-icons">logout</i></a></li>
+                    {% endif %}
+                {% endblock logout %}
+
+            </ul>
         </nav>
-    </header>
-    <article class="container">
-        <main class="col-sm-6">
-            {% block main %}
-	        {% endblock main %}
-        </main>
-        <aside class="col-sm-6">
-            {% load static %}
-            <img src="{% static 'website/images/imagem.jpg' %}" alt="image_1">
-        </aside>
-    </article>
-    <footer>Programação Web 20/21 ULHT</footer>
+    </div>
+
+</header>
+
+<main>
+    {% block main %}
+    {% endblock main %}
+
+    {% block article %}
+        <article id="subfooter">
+            <aside id="a_subfooter">
+                <a href="{% url 'website:faq' %}">
+                    <picture>
+                        <source srcset="{% static 'website/images/faq_big.png' %}" media="(max-width: 600px)">
+                        <img src="{% static 'website/images/faq.png' %}" alt="img_1">
+                    </picture>
+                </a>
+            </aside>
+            <p id="subfooter_txt">Looking for support? Visit our help center.</p>
+        </article>
+    {% endblock article %}
+
+</main>
+
+<footer>
+    <p>Copyright © 2020 InstrMusic</p>
+    <svg class="equilizer" viewBox="0 0 128 128">
+        <rect class="bar" transform="translate(0,0)" y="15"></rect>
+        <rect class="bar" transform="translate(25,0)" y="15"></rect>
+        <rect class="bar" transform="translate(50,0)" y="15"></rect>
+        <rect class="bar" transform="translate(75,0)" y="15"></rect>
+        <rect class="bar" transform="translate(100,0)" y="15"></rect>
+    </svg>
+</footer>
 </body>
+
 </html>
