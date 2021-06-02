@@ -26,6 +26,6 @@ urlpatterns = [
     path('events_details/<int:events_id>/participate', views.participate_page_view, name='participate'),
     path('login', views.login_page_view, name='login'),
     path('logout', views.logout_page_view, name='logout'),
-    path('quizz_results/<int:quizz_id>', views.quizz_results_page_view, name='quizz_results'),
+    path('quizz_results', views.quizz_results_page_view, name='quizz_results'),
 
 ]

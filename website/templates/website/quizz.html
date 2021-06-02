@@ -131,19 +131,20 @@
 </style>
 
 
-    {% block main %}
+{% block main %}
 
-        <article id="subheader">
-            Quizz
-        </article>
+    <article id="subheader">
+        Quizz
+    </article>
 
-        <form method="POST" action="">
-            {% csrf_token %}
-            {{ form.as_p }}
+    <form method="POST" action="">
+        {% csrf_token %}
+        {{ form.as_p }}
 
-            <input type="submit" value="SUBMIT" lang="pt">
 
-        </form>
-    {% endblock main %}
+        <input type="submit" value="SUBMIT" lang="pt">
+
+    </form>
+{% endblock main %}
 
 

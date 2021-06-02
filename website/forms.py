@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from .models import Contact, Quizz, Comment, Musician
+from .models import Contact, Quizz, Comment, Musician, Result_Quizz
 
 
 class ContactForm(ModelForm):
@@ -16,6 +16,12 @@ class ContactForm(ModelForm):
 class MusicianForm(ModelForm):
     class Meta:
         model = Musician
+        fields = '__all__'
+
+
+class Result_QuizzForm(ModelForm):
+    class Meta:
+        model = Result_Quizz
         fields = '__all__'
 
 
@@ -50,6 +56,7 @@ class QuizzForm(ModelForm):
             'question2': "What's the name of the app?",
             'question8': 'How many effects can I have at the same time?',
             'question9': 'How many people were envolved on the development of this app?',
+            'question10': 'When was the app created?',
             'question6': 'How many sensors are available?',
 
         }

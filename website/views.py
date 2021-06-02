@@ -3,8 +3,8 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 
-from .models import Contact, Comment, Quizz, Event, Location, Musician
-from .forms import ContactForm, MusicianForm, QuizzForm, CommentForm
+from .models import Contact, Comment, Quizz, Event, Location, Musician, Result_Quizz
+from .forms import ContactForm, MusicianForm, QuizzForm, CommentForm, Result_QuizzForm
 
 
 def home_page_view(request):  # para renderizar a página home.html teremos a função home_page_view
@@ -190,8 +190,58 @@ def comments_page_view(request):
     return render(request, 'website/comments.html', context)
 
 
-def quizz_results_page_view(request, quizz_id):
-    q = Quizz.objects.all().get(id=quizz_id)
+def quizz_results_page_view(request):
+    q = Quizz.objects.latest('id')
+    form = Result_QuizzForm()
+    obj = form.save(commit=False)
+
+    # cotação 2 cada pergunta
+    evaluation = 0
+    # question1
+    if str(q.question1).lower() == "yes":
+        evaluation += 2
+        obj.result_question1 = 2
+    # question2
+    if str(q.question2).lower() == "instrmusic":
+        evaluation += 2
+        obj.result_question2 = 2
+    # question3
+    if str(q.question3).lower() == "3":
+        evaluation += 2
+        obj.result_question3 = 2
+    # question4
+    if str(q.question4).lower() == "yes":
+        evaluation += 2
+        obj.result_question4 = 2
+    # question5
+    if str(q.question5).lower() == "yes":
+        evaluation += 2
+        obj.result_question5 = 2
+    # question6
+    if str(q.question6).lower() == "4":
+        evaluation += 2
+        obj.result_question6 = 2
+    # question7
+    if str(q.question7).lower() == "yes":
+        evaluation += 2
+        obj.result_question7 = 2
+    # question8
+    if str(q.question8).lower() == "1":
+        evaluation += 2
+        obj.result_question8 = 2
+    # question9
+    if str(q.question9).lower() == "2":
+        evaluation += 2
+        obj.result_question9 = 2
+    # question10
+    if str(q.question10).lower() == "2020":
+        evaluation += 2
+        obj.result_question10 = 2
+
+    #form.save()
+    obj.save()
+    #obj.quizz.add(q)
+
     context = {'quizz': q}
     return render(request, "website/quizz_results.html", context)
 
@@ -199,10 +249,17 @@ def quizz_results_page_view(request, quizz_id):
 def quizz_page_view(request):
     form = QuizzForm(request.POST or None)
 
+    if request.user.is_authenticated:
+        form.email = "m@gmail.com"
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('website:quizz_results'))
+        context = {'form': form, 'message': "logged"}
+        return render(request, 'website/quizz.html', context)
+
     if form.is_valid():
         form.save()
-        return HttpResponseRedirect(reverse('website:quizz_results.html', args=(form.id,)))
+        return HttpResponseRedirect(reverse('website:quizz_results'))
 
     context = {'form': form}
-
     return render(request, 'website/quizz.html', context)
