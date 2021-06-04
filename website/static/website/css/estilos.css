@@ -47,13 +47,23 @@ header {
     font-size: 40px;
 }
 
-#sub_subheader ::first-line {
-    color: rgb(78, 78, 78);
-}
-
 
 a {
     text-decoration: none;
+}
+
+label {
+    color: rgb(71, 71, 71);
+
+}
+
+h2 {
+    font-size: 35px;
+}
+
+
+hr {
+    margin-bottom: 4%;
 }
 
 a[target=_blank] {
@@ -69,7 +79,7 @@ h1 {
 }
 
 
-input[type=submit] {
+input[type=submit], button {
     margin-top: 5%;
     width: max-content;
     color: white;
@@ -81,11 +91,12 @@ input[type=submit] {
     border-radius: 30px;
 }
 
-input[type=submit]:hover {
+input[type=submit]:hover, button:hover {
     background-color: #406691;
 }
 
-input[type=submit]:active {
+
+input[type=submit]:active, button:active {
     background-color: #76918F;
 }
 
@@ -129,6 +140,19 @@ header ~ main #subheader {
     color: white;
 }
 
+textarea {
+    margin-bottom: 4%;
+    background-color: #eee;
+    border: none;
+}
+
+#cancel_button {
+    background-color: rgba(255, 0, 0, 0.49);
+}
+
+#cancel_button:hover {
+    background-color: rgb(255, 0, 0) !important;
+}
 
 #menu {
     background-color: #8f7691;

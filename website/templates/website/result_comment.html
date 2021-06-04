@@ -1,0 +1,113 @@
+{% extends 'website/base.html' %}
+{% load static %}
+
+
+<style>
+    {% block style %}
+
+
+        li {
+            visibility: hidden;
+        }
+
+        ul li a, #nav ul li #nav2 li, label {
+            visibility: visible;
+        }
+
+
+        main {
+            grid-area: main;
+            display: grid;
+            grid-template-columns: 1fr 0.5fr 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr 0.5fr 0.4fr 0.5fr;
+
+            grid-template-areas:
+            "subheader subheader subheader subheader subheader"
+            "ul ul ul ul ul"
+            "legend legend . . ."
+            ". . . . ."
+            "subfooter subfooter subfooter subfooter subfooter";
+        }
+
+        select[id^="id_question"] {
+            margin-bottom: 3%;
+            margin-top: 3%;
+        }
+
+
+        #legend {
+            grid-area: legend;
+            margin-top: 10%;
+            margin-left: 10%;
+        }
+
+        #graph {
+
+            text-align: start;
+            grid-area: ul;
+            display: flex;
+            flex-direction: row;
+        }
+
+        legend {
+            padding: 20px 0px 20px 00px;
+            font-size: xx-large;
+        }
+
+
+        @media screen and (max-width: 600px) {
+
+            main {
+                grid-area: main;
+                display: grid;
+                grid-template-columns: 1fr 10fr 1fr;
+                grid-template-rows: 1fr 5fr 1fr;
+
+                grid-template-areas:
+                "subheader subheader subheader"
+                ". form ."
+                "subfooter subfooter subfooter";
+            }
+
+            input {
+                background-color: #eee;
+                border: none;
+                width: 100%;
+                border-radius: 0;
+                font-size: 15px;
+                color: #000000;
+                padding: 16px;
+            }
+        }
+
+    {% endblock style %}
+
+</style>
+
+
+
+{% block main %}
+
+    <article id="subheader">
+        Comments Results
+    </article>
+
+    <article id="graph">
+        <img style="width: 50%" src="{% static 'website/images/media3_plot.png' %}">
+        <img style="width: 50%" src="{% static 'website/images/media1_plot.png' %}">
+        <img style="width: 50%" src="{% static 'website/images/media2_plot.png' %}">
+    </article>
+
+    <article id="legend" style="background-color: #eee;">
+
+        <h2>Legend</h2>
+
+        <p>Q3 - Font size</p>
+        <p>Q4 - Overall screen design</p>
+        <p>Q5 - Did you find easily what you were looking for?</p>
+        <p>Q6 - Clarity of the vocabulary used</p>
+        <p>Q8 - The used colours allow easy reading</p>
+    </article>
+{% endblock main %}
+
+

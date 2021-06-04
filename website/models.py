@@ -14,7 +14,7 @@ class Location(models.Model):
 
 class Event(models.Model):
     title = models.CharField(max_length=30)
-    description = models.TextField(max_length=360, default='')
+    description = models.TextField(max_length=180, default='')
     date = models.DateField(null=True, blank=True)
     time = models.IntegerField()
     location = models.ForeignKey(Location, on_delete=models.CASCADE, related_name="location")
@@ -37,7 +37,8 @@ class Musician(models.Model):
 class Contact(models.Model):
     name = models.CharField(max_length=30)
     surname = models.CharField(max_length=30)
-    cell_number = models.IntegerField(default=1)
+    cell_number = models.IntegerField()
+    birthday = models.DateField(null=True, blank=True)
     email = models.EmailField(max_length=254)
     subject = models.CharField(max_length=60)
     message = models.TextField(max_length=360, default='')
@@ -58,7 +59,7 @@ class Comment(models.Model):
     question3 = models.CharField(max_length=30, choices=options, default="1")
     question4 = models.CharField(max_length=30, choices=options, default="1")
     question6 = models.CharField(max_length=30, choices=options, default="1")
-    question7 = models.CharField(max_length=30, choices=options, default="1")
+    question7 = models.CharField(max_length=30)
     question8 = models.CharField(max_length=30, choices=options, default="1")
     question9 = models.TextField(max_length=360, default='')
 
@@ -97,7 +98,8 @@ class Result_Quizz(models.Model):
     result_question8 = models.IntegerField(default=0)
     result_question9 = models.IntegerField(default=0)
     result_question10 = models.IntegerField(default=0)
-    quizz = models.ForeignKey(Quizz, on_delete=models.CASCADE, related_name="quizz", default="", null=True  )
+    final_result = models.IntegerField(default=0)
+    quizz = models.ForeignKey(Quizz, on_delete=models.CASCADE, related_name="quizz", default="", null=True)
 
     def __str__(self):
         return str(self.id)

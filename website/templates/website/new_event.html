@@ -5,7 +5,6 @@
 <style>
     {% block style %}
 
-
         li {
             visibility: hidden;
         }
@@ -14,25 +13,23 @@
             visibility: visible;
         }
 
-
         main {
             grid-area: main;
             display: grid;
             grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-            grid-template-rows: 1fr 7fr 1fr;
-
+            grid-template-rows: 1fr 1fr 6fr 1fr;
             grid-template-areas:
             "subheader subheader subheader subheader subheader"
+            ".sub_subheader sub_subheader sub_subheader."
             ". form form form ."
             "subfooter subfooter subfooter subfooter subfooter";
         }
 
-        select[id^="id_question"] {
-            margin-bottom: 5%;
+        #sub_subheader {
+            grid-area: sub_subheader;
         }
 
         form {
-
             text-align: start;
             grid-area: form;
             display: flex;
@@ -40,7 +37,7 @@
         }
 
 
-        input, textarea {
+        input {
             background-color: #eee;
             border: none;
             width: 100%;
@@ -48,9 +45,8 @@
             font-size: 16px;
             color: #000000;
             padding: 16px;
-            margin-bottom: 5%;
+            margin-bottom: 2%;
         }
-
 
         input[type=checkbox] {
             width: auto;
@@ -62,11 +58,6 @@
 
         fieldset {
             border: 0;
-        }
-
-        .question1 {
-            width: 30%;
-            margin-bottom: 5%;
         }
 
 
@@ -88,7 +79,6 @@
                 background-color: #eee;
                 border: none;
                 width: 100%;
-                border-radius: 0;
                 font-size: 15px;
                 color: #000000;
                 padding: 16px;
@@ -100,52 +90,38 @@
 </style>
 
 
+
 {% block main %}
 
     <article id="subheader">
-        Quizz
+        New Event
     </article>
+
+    <article id="sub_subheader">
+        <a href="{% url 'website:events' %}">
+            <button id="cancel_button">EVENT LIST</button>
+        </a>
+    </article>
+
 
     <form method="POST" action="">
         {% csrf_token %}
-        <h2>Personal Information</h2>
+        <h2>Create a new event</h2>
         <hr>
-        <label>{{ form.name.label_tag }}</label>
-        {{ form.name }}
-        <label>{{ form.surname.label_tag }}</label>
-        {{ form.surname }}
-        <label>{{ form.email.label_tag }}</label>
-        {{ form.email }}
+        <label>{{ form.title.label_tag }}</label>
+        {{ form.title }}
+        <label>{{ form.description.label_tag }}</label>
+        {{ form.description }}
+        <label>{{ form.date.label_tag }}</label>
+        {{ form.date }}
+        <label>{{ form.time.label_tag }}</label>
+        {{ form.time }}
+        <label>{{ form.location.label_tag }}</label>
+        {{ form.location }}
 
-        <h2 style="margin-top: 5%">Quizz Section</h2>
-        <hr>
-        <label>{{ form.question1.label_tag }}</label>
-        {{ form.question1 }}
-        <label>{{ form.question2.label_tag }}</label>
-        {{ form.question2 }}
-        <label>{{ form.question3.label_tag }}</label>
-        Scale from 1 to 3
-        {{ form.question3 }}
-        <label>{{ form.question4.label_tag }}</label>
-        {{ form.question4 }}
-        <label>{{ form.question5.label_tag }}</label>
-        {{ form.question5 }}
-        <label>{{ form.question6.label_tag }}</label>
-        {{ form.question6 }}
-        <label>{{ form.question7.label_tag }}</label>
-        {{ form.question7 }}
-        <label>{{ form.question8.label_tag }}</label>
-        {{ form.question8 }}
-        <label>{{ form.question9.label_tag }}</label>
-        {{ form.question9 }}
-        <label>{{ form.question10.label_tag }}</label>
-        {{ form.question10 }}
-
-
-
-        <input type="submit" value="CHECK RESULTS" lang="pt">
+        <input type="submit" value="SUBMIT" lang="pt">
 
     </form>
-{% endblock main %}
 
+{% endblock main %}
 

@@ -5,17 +5,28 @@
 <style>
     {% block style %}
 
+        li {
+            visibility: hidden;
+        }
+
+        ul li a, #nav ul li #nav2 li, label {
+            visibility: visible;
+        }
 
         main {
             grid-area: main;
             display: grid;
             grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-            grid-template-rows: 1fr 5fr 1fr;
-
+            grid-template-rows: 1fr 0.5fr 3.5fr 1fr;
             grid-template-areas:
             "subheader subheader subheader subheader subheader"
+            ". sub_subheader sub_subheader sub_subheader ."
             ". form form form ."
             "subfooter subfooter subfooter subfooter subfooter";
+        }
+
+        #sub_subheader {
+            grid-area: sub_subheader;
         }
 
         form {
@@ -23,32 +34,6 @@
             grid-area: form;
             display: flex;
             flex-direction: column;
-        }
-
-        #name_surname {
-            display: flex;
-        }
-
-        #name_surname p:last-child {
-            padding-left: 15px;
-        }
-
-        legend {
-            padding: 20px 0px 20px 00px;
-            font-size: xx-large;
-        }
-
-        #email {
-            align-self: center;
-            font-size: 100%;
-            text-decoration: none;
-            padding: 55px 0px 50px 0px;
-            color: #4974a5;
-        }
-
-
-        #email:active {
-            color: #76918F;
         }
 
 
@@ -60,6 +45,7 @@
             font-size: 16px;
             color: #000000;
             padding: 16px;
+            margin-bottom: 2%;
         }
 
         input[type=checkbox] {
@@ -73,8 +59,6 @@
         fieldset {
             border: 0;
         }
-
-
 
 
         @media screen and (max-width: 600px) {
@@ -95,7 +79,6 @@
                 background-color: #eee;
                 border: none;
                 width: 100%;
-                border-radius: 0;
                 font-size: 15px;
                 color: #000000;
                 padding: 16px;
@@ -114,23 +97,28 @@
         Participate
     </article>
 
+     <article id="sub_subheader">
+        <a href="{% url 'website:events_details' events_id %}">
+            <button id="cancel_button">BACK TO EVENT DETAILS</button>
+        </a>
+    </article>
+
     <form method="POST" action="">
         {% csrf_token %}
-        <label>{{ form.name.label_tag}}</label>
-        {{ form.name}}
-        <label>{{ form.surname.label_tag}}</label>
-        {{ form.surname}}<br>
-        <label>{{ form.email.label_tag}}</label>
-        {{ form.email}}<br>
-        <label>{{ form.instrument.label_tag}}</label>
-        {{ form.instrument}}<br>
+        <h2> {{ e.title }} </h2>
+        <hr>
+        <label>{{ form.name.label_tag }}</label>
+        {{ form.name }}
+        <label>{{ form.surname.label_tag }}</label>
+        {{ form.surname }}<br>
+        <label>{{ form.email.label_tag }}</label>
+        {{ form.email }}<br>
+        <label>{{ form.instrument.label_tag }}</label>
+        {{ form.instrument }}<br>
 
-        <input type="submit" value="SUBMIT" lang="pt">
+        <p><input type="submit" value="SUBMIT" lang="pt"></p>
 
     </form>
 
-    <a href="{% url 'website:events_details' events_id %}">
-        <button>Cancel</button>
-    </a>
 {% endblock main %}
 

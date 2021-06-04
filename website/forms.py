@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from .models import Contact, Quizz, Comment, Musician, Result_Quizz
+from .models import Contact, Quizz, Comment, Musician, Result_Quizz, Event
 
 
 class ContactForm(ModelForm):
@@ -8,8 +8,25 @@ class ContactForm(ModelForm):
         model = Contact
         fields = '__all__'
 
+        widgets = {
+            'birthday': forms.TextInput(attrs={'placeholder': 'yyyy-mm-dd'}),
+            'cell_number': forms.NumberInput(attrs={'placeholder': 'XXX XXX XXX'}),
+            'email': forms.EmailInput(attrs={'placeholder': 'example@test.com'}),
+
+        }
+
         labels = {
-            'perm': 'Permission',
+            'perm': 'I give my express consent that my data be used for statistics purpose only ',
+        }
+
+
+class EventForm(ModelForm):
+    class Meta:
+        model = Event
+        fields = '__all__'
+
+        widgets = {
+            'date': forms.TextInput(attrs={'placeholder': 'yyyy-mm-dd'}),
         }
 
 

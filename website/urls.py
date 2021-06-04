@@ -27,5 +27,7 @@ urlpatterns = [
     path('login', views.login_page_view, name='login'),
     path('logout', views.logout_page_view, name='logout'),
     path('quizz_results', views.quizz_results_page_view, name='quizz_results'),
+    path('result_comment', views.comment_results_page_view, name='result_comment'),
+    path('new_event', views.new_event_page_view, name='new_event'),
 
 ]

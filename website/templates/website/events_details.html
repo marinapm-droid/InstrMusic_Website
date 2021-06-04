@@ -5,84 +5,27 @@
 <style>
     {% block style %}
 
-
         main {
             grid-area: main;
             display: grid;
             grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-            grid-template-rows: 1fr 5fr 1fr;
-
+            grid-template-rows: 1fr 1fr 2.5fr 1fr;
             grid-template-areas:
             "subheader subheader subheader subheader subheader"
-            ". . form . ."
+            ". sub_subheader sub_subheader sub_subheader ."
+            ". event event event ."
             "subfooter subfooter subfooter subfooter subfooter";
         }
 
-        .event {
-            text-align: start;
-            grid-area: form;
-            display: flex;
-            flex-direction: column;
-        }
 
-        #name_surname {
-            display: flex;
-        }
-
-        #name_surname p:last-child {
-            padding-left: 15px;
-        }
-
-        legend {
-            padding: 20px 0px 20px 00px;
-            font-size: xx-large;
-        }
-
-        #email {
-            align-self: center;
-            font-size: 100%;
-            text-decoration: none;
-            padding: 55px 0px 50px 0px;
-            color: #4974a5;
+        #sub_subheader {
+            grid-area: sub_subheader;
         }
 
 
-        #email:active {
-            color: #76918F;
-        }
-
-
-        input {
-            background-color: #eee;
-            border: none;
-            width: 100%;
-            border-radius: 0;
-            font-size: 16px;
-            color: #000000;
-            padding: 16px;
-        }
-
-        input[type=checkbox] {
-            width: auto;
-        }
-
-        input[type=submit] {
-            color: white;
-            width: auto;
-            padding: 10px 20px;
-            background: #4974a5;
-            border: 0 none;
-            cursor: pointer;
-            -webkit-border-radius: 30px;
-            border-radius: 30px;
-        }
-
-        input[type=submit]:hover {
-            background-color: #406691;
-        }
-
-        input[type=submit]:active {
-            background-color: #76918F;
+        #event {
+            grid-area: event;
+            margin-bottom: 10%;
         }
 
         fieldset p {
@@ -98,29 +41,18 @@
         }
 
 
-
         @media screen and (max-width: 600px) {
 
             main {
                 grid-area: main;
                 display: grid;
                 grid-template-columns: 1fr 10fr 1fr;
-                grid-template-rows: 1fr 5fr 1fr;
-
+                grid-template-rows: 1fr 0.5fr 4fr 1fr;
                 grid-template-areas:
-                "subheader subheader subheader"
-                ". form ."
-                "subfooter subfooter subfooter";
-            }
-
-            input {
-                background-color: #eee;
-                border: none;
-                width: 100%;
-                border-radius: 0;
-                font-size: 15px;
-                color: #000000;
-                padding: 16px;
+            "subheader subheader subheader"
+            ". sub_subheader ."
+            ". contact ."
+            "subfooter subfooter subfooter";
             }
         }
 
@@ -128,35 +60,43 @@
 
 </style>
 
-
-
-
 {% block main %}
 
     <article id="subheader">
         {{ events.title }}
     </article>
-    <article class="event">
-        Location: {{ events.location }}
-        <br>
-        Date: {{ events.date }} {{ events.time }}h
-        <br>
-        <br>
-        MUSICIANS
-        <br>
-        {% for musician in musicians %}
-            {{ musician.name }}
-            <br>
-        {% empty %}
-            <li>No musicians :(</li>
-        {% endfor %}
 
 
-        <a href="{% url 'website:participate' events.id %}" role="button">Participate</a>
-
-        <a href="{% url 'website:events' %}">Back to Events</a>
-
+    <article id="sub_subheader">
+        <a href="{% url 'website:participate' events.id %}">
+            <button>PARTICIPATE</button>
+        </a>
+        <a href="{% url 'website:events' %}">
+            <button id="cancel_button">BACK TO EVENTS</button>
+        </a>
     </article>
+
+    <article id="event">
+        <ul style="background-color: #eee; margin-bottom: 5%;">
+            <h2>Details</h2>
+            <li>{{ events.location }}</li>
+            <li>{{ events.date }}</li>
+            <li>{{ events.time }}h</li>
+            <li>{{ events.description }}h</li>
+            </p>
+        </ul>
+
+        <ul style="background-color: #eee; margin-bottom: 5%;">
+            <h2 >Participants</h2>
+            {% for musician in musicians %}
+                <li>{{ musician.name }} {{ musician.surname }}</li>
+                <br>
+            {% empty %}
+                <li>No musicians :(</li>
+            {% endfor %}
+        </ul>
+    </article>
+
 
 {% endblock main %}
 

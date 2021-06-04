@@ -5,84 +5,27 @@
 <style>
     {% block style %}
 
-
         main {
             grid-area: main;
             display: grid;
             grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-            grid-template-rows: 1fr 5fr 1fr;
-
+            grid-template-rows: 1fr 1fr 3fr 1fr;
             grid-template-areas:
             "subheader subheader subheader subheader subheader"
-            ". form form form ."
+            ". sub_subheader sub_subheader sub_subheader ."
+            ". event event event ."
             "subfooter subfooter subfooter subfooter subfooter";
         }
 
-        .event {
-            text-align: start;
-            grid-area: form;
-            display: flex;
-            flex-direction: column;
-        }
 
-        #name_surname {
-            display: flex;
-        }
-
-        #name_surname p:last-child {
-            padding-left: 15px;
-        }
-
-        legend {
-            padding: 20px 0px 20px 00px;
-            font-size: xx-large;
-        }
-
-        #email {
-            align-self: center;
-            font-size: 100%;
-            text-decoration: none;
-            padding: 55px 0px 50px 0px;
-            color: #4974a5;
+        #sub_subheader {
+            grid-area: sub_subheader;
         }
 
 
-        #email:active {
-            color: #76918F;
-        }
-
-
-        input {
-            background-color: #eee;
-            border: none;
-            width: 100%;
-            border-radius: 0;
-            font-size: 16px;
-            color: #000000;
-            padding: 16px;
-        }
-
-        input[type=checkbox] {
-            width: auto;
-        }
-
-        input[type=submit] {
-            color: white;
-            width: auto;
-            padding: 10px 20px;
-            background: #4974a5;
-            border: 0 none;
-            cursor: pointer;
-            -webkit-border-radius: 30px;
-            border-radius: 30px;
-        }
-
-        input[type=submit]:hover {
-            background-color: #406691;
-        }
-
-        input[type=submit]:active {
-            background-color: #76918F;
+        #event {
+            grid-area: event;
+            margin-bottom: 10%;
         }
 
         fieldset p {
@@ -98,29 +41,18 @@
         }
 
 
-
         @media screen and (max-width: 600px) {
 
             main {
                 grid-area: main;
                 display: grid;
                 grid-template-columns: 1fr 10fr 1fr;
-                grid-template-rows: 1fr 5fr 1fr;
-
+                grid-template-rows: 1fr 0.5fr 4fr 1fr;
                 grid-template-areas:
-                "subheader subheader subheader"
-                ". form ."
-                "subfooter subfooter subfooter";
-            }
-
-            input {
-                background-color: #eee;
-                border: none;
-                width: 100%;
-                border-radius: 0;
-                font-size: 15px;
-                color: #000000;
-                padding: 16px;
+            "subheader subheader subheader"
+            ". sub_subheader ."
+            ". contact ."
+            "subfooter subfooter subfooter";
             }
         }
 
@@ -129,21 +61,31 @@
 </style>
 
 
-
-
 {% block main %}
 
     <article id="subheader">
         Events
     </article>
 
-    <ul class="event">
+    <article id="sub_subheader">
+        <a href="{% url 'website:new_event' %}">
+            <button>NEW EVENT</button>
+        </a>
+    </article>
+
+
+    <article id="event">
         {% for event in events %}
-            <li>
-                <a href=" {%  url 'website:events_details' event.id %}">{{ event.title }}: {{ event.location }}</a>
-            </li>
+            <ul style="background-color: #eee; margin-bottom: 5%;">
+                <h2><a href=" {% url 'website:events_details' event.id %}"><button>Details</button></a>
+                    {{ event.title }}
+                </h2>
+                <p style="padding-bottom: 5%; padding-left: 13%">{{ event.location }}, {{ event.date }}</p>
+            </ul>
         {% endfor %}
-    </ul>
+    </article>
+
+
 
 
 {% endblock main %}

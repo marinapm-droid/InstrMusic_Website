@@ -5,6 +5,21 @@
 <style>
     {% block style %}
 
+        .rwd-table th,
+        .rwd-table td {
+            text-align: left;
+        }
+
+        .rwd-table {
+            background: #34495E;
+            color: #fff;
+            border-radius: .4em;
+            overflow: hidden;
+        }
+
+        .rwd-table th{
+            color: white;
+        }
 
         li {
             visibility: hidden;
@@ -14,38 +29,31 @@
             visibility: visible;
         }
 
-
         main {
             grid-area: main;
             display: grid;
             grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-            grid-template-rows: 1fr 7fr 1fr;
+            grid-template-rows: 0.5fr 1fr 1fr 0.5fr;
 
             grid-template-areas:
             "subheader subheader subheader subheader subheader"
-            ". form form form ."
+            ". table table table ."
+            ". . final_result . ."
             "subfooter subfooter subfooter subfooter subfooter";
         }
 
-        select[id^="id_question"] {
-            margin-bottom: 3%;
-            margin-top: 3%;
-        }
-
-
-
-        form {
-
+        #results {
             text-align: start;
-            grid-area: form;
+            grid-area: table;
             display: flex;
             flex-direction: column;
         }
 
-
-        #name_surname {
-            display: flex;
+        #final_result {
+            grid-area: final_result;
         }
+
+
 
         #name_surname p:last-child {
             padding-left: 15px;
@@ -56,49 +64,6 @@
             font-size: xx-large;
         }
 
-        #email {
-            align-self: center;
-            font-size: 100%;
-            text-decoration: none;
-            padding: 55px 0px 50px 0px;
-            color: #4974a5;
-        }
-
-
-        #email:active {
-            color: #76918F;
-        }
-
-
-        input {
-            background-color: #eee;
-            border: none;
-            width: 100%;
-            border-radius: 0;
-            font-size: 16px;
-            color: #000000;
-            padding: 16px;
-            margin-bottom: 2%;
-        }
-
-
-
-        input[type=checkbox] {
-            width: auto;
-        }
-
-        fieldset p {
-            color: rgb(71, 71, 71);
-        }
-
-        fieldset {
-            border: 0;
-        }
-
-
-        .question1 {
-            width: 30%;
-        }
 
 
         @media screen and (max-width: 600px) {
@@ -130,14 +95,100 @@
 
 </style>
 
+{% block main %}
 
-    {% block main %}
+    <article id="subheader">
+        Quizz Results
+    </article>
 
-        <article id="subheader">
-            Quizz
-        </article>
+    <article id="results">
+        <h2 style="text-align: center">{{ quizz_results.final_result }}/20</h2>
+        <hr>
+        <table class="rwd-table">
+            <tr>
+                <th style="color:#7e96ac"><h2>Questions</h2></th>
+                <th style="color:#7e96ac"><h2>Answer</h2></th>
+                <th style="color:#7e96ac"><h2>0-2</h2></th>
+            </tr>
 
-       {{ quizz.name }}
-    {% endblock main %}
+            <tr>
+                <th>Can I save the parameters as favourites to use them later?</th>
+                <th>{{ quizz.question1 }}</th>
+                <th>{{ quizz_results.result_question1 }}</th>
+            </tr>
+
+            <tr>
+
+                <th>What's the name of the app?
+                <th>{{ quizz.question2 }}</th>
+                <th>{{ quizz_results.result_question2 }}</th>
+            </tr>
+            <tr>
+
+                <th>How many parameters do I need to play music?</th>
+                <th>{{ quizz.question3 }}</th>
+                <th>{{ quizz_results.result_question3 }}</th>
+            </tr>
+
+            <tr>
+                <th>Can I add my own sounds?</th>
+                <th>{{ quizz.question4 }}</th>
+                <th>{{ quizz_results.result_question4 }}</th>
+            </tr>
+
+            <tr>
+
+                <th>Can I record my live performances?</th>
+                <th>{{ quizz.question5 }}</th>
+                <th>{{ quizz_results.result_question5 }}</th>
+            </tr>
+
+
+            <tr>
+
+                <th>How many sensors are available?</th>
+                <th>{{ quizz.question6 }}</th>
+                <th>{{ quizz_results.result_question6 }}</th>
+            </tr>
+
+
+            <tr>
+
+                <th>Can I talk with my friends via chat?</th>
+                <th>{{ quizz.question7 }}</th>
+                <th>{{ quizz_results.result_question7 }}</th>
+            </tr>
+
+            <tr>
+
+                <th>How many effects can I have at the same time?</th>
+                <th>{{ quizz.question8 }}</th>
+                <th>{{ quizz_results.result_question8 }}</th>
+            </tr>
+
+            <tr>
+
+                <th>How many people were envolved on the development of this app?</th>
+                <th>{{ quizz.question9 }}</th>
+                <th>{{ quizz_results.result_question9 }}</th>
+            </tr>
+
+            <tr>
+
+                <th>When was the app created?</th>
+                <th>{{ quizz.question10 }}</th>
+                <th>{{ quizz_results.result_question10 }}</th>
+
+            </tr>
+
+
+        </table>
+    </article>
+
+    <section id="final_result">
+        <img src="{% static 'website/images/my_plot.png' %}">
+    </section>
+
+{% endblock main %}
 
 

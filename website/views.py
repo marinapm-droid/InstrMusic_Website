@@ -1,10 +1,15 @@
+import matplotlib
 from django.contrib.auth import authenticate, login, logout
+from django.db.models import Avg
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+
 from .models import Contact, Comment, Quizz, Event, Location, Musician, Result_Quizz
-from .forms import ContactForm, MusicianForm, QuizzForm, CommentForm, Result_QuizzForm
+from .forms import ContactForm, MusicianForm, QuizzForm, CommentForm, Result_QuizzForm, EventForm
 
 
 def home_page_view(request):  # para renderizar a página home.html teremos a função home_page_view
@@ -139,7 +144,7 @@ def participate_page_view(request, events_id):
             obj.event.add(e)
 
             return HttpResponseRedirect(reverse('website:events_details', args=(e.id,)))
-        context = {'form': form, 'events_id': events_id, 'message': "logged"}
+        context = {'form': form, 'e': e, 'events_id': events_id, 'message': "logged"}
         return render(request, 'website/participate.html', context)
 
     if form.is_valid():
@@ -148,7 +153,7 @@ def participate_page_view(request, events_id):
         obj.event.add(e)
         return HttpResponseRedirect(reverse('website:events_details', args=(e.id,)))
 
-    context = {'form': form, 'events_id': events_id}
+    context = {'form': form, 'e': e, 'events_id': events_id}
     return render(request, 'website/participate.html', context)
 
 
@@ -178,16 +183,49 @@ def comments_page_view(request):
     form = CommentForm(request.POST or None)
 
     if request.user.is_authenticated:
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('website:result_comment'))
         context = {'form': form, 'message': "logged"}
-        return render(request, "website/comments.html", context)
+        return render(request, 'website/comments.html', context)
 
     if form.is_valid():
         form.save()
-        return HttpResponseRedirect(reverse('website:comments'))
+        return HttpResponseRedirect(reverse('website:result_comment'))
 
     context = {'form': form}
-
     return render(request, 'website/comments.html', context)
+
+
+def comment_results_page_view(request):
+    c = Comment.objects.all()
+    exp_vals_1 = [Comment.objects.filter(question1='Yes').count(), Comment.objects.filter(question1='No').count(),
+                  Comment.objects.filter(question1='More or Less').count()]
+    exp_labels_1 = ["Yes", "No", "More or Less"]
+    plt.bar(exp_labels_1, exp_vals_1)
+    plt.title("Did you enjoy the website?")
+    plt.savefig('website/static/website/images/media1_plot.png')
+    plt.clf()
+
+    exp_vals_2 = [Comment.objects.filter(question5='Yes').count(), Comment.objects.filter(question5='No').count()]
+    exp_labels_2 = ["Yes", "No"]
+    plt.bar(exp_labels_2, exp_vals_2)
+    plt.title("Did you find any bugs?")
+    plt.savefig('website/static/website/images/media2_plot.png')
+    plt.clf()
+
+    exp_vals_3 = [Comment.objects.aggregate(Avg('question3'))['question3__avg'],
+                  Comment.objects.aggregate(Avg('question4'))['question4__avg'],
+                  Comment.objects.aggregate(Avg('question2'))['question2__avg'],
+                  Comment.objects.aggregate(Avg('question6'))['question6__avg'],
+                  Comment.objects.aggregate(Avg('question8'))['question8__avg']]
+    exp_labels_3 = ["Q3", "Q4", "Q5", "Q6", "Q8"]
+    plt.bar(exp_labels_3, exp_vals_3)
+    plt.title("Avg Comments")
+    plt.savefig('website/static/website/images/media3_plot.png')
+    plt.clf()
+
+    return render(request, 'website/result_comment.html')
 
 
 def quizz_results_page_view(request):
@@ -238,11 +276,23 @@ def quizz_results_page_view(request):
         evaluation += 2
         obj.result_question10 = 2
 
-    #form.save()
+    obj.final_result = evaluation
+    obj.quizz = q
     obj.save()
-    #obj.quizz.add(q)
 
-    context = {'quizz': q}
+    exp_vals = [obj.result_question1, obj.result_question2, obj.result_question3, obj.result_question4,
+                obj.result_question5, obj.result_question6, obj.result_question7, obj.result_question8,
+                obj.result_question9, obj.result_question10]
+    exp_labels = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+    plt.bar(exp_labels, exp_vals)
+    plt.title("Results")
+    plt.savefig('website/static/website/images/my_plot.png')
+
+    if request.user.is_authenticated:
+
+        context = {'quizz': q, 'quizz_results': obj, 'message': "logged"}
+
+
     return render(request, "website/quizz_results.html", context)
 
 
@@ -263,3 +313,22 @@ def quizz_page_view(request):
 
     context = {'form': form}
     return render(request, 'website/quizz.html', context)
+
+
+def new_event_page_view(request):
+    form = EventForm(request.POST or None)
+
+    if request.user.is_authenticated:
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('website:events'))
+        context = {'form': form, 'message': "logged"}
+        return render(request, "website/new_event.html", context)
+
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect(reverse('website:events'))
+
+    context = {'form': form}
+
+    return render(request, 'website/new_event.html', context)
