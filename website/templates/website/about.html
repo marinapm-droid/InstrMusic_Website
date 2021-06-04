@@ -1,4 +1,5 @@
 {% extends 'website/base.html' %}
+{% load static %}
 
 
 <style>
@@ -148,7 +149,7 @@
     <article id="website">
         <p>SEE DETAILS</p>
         <p>ABOUT THE WEBSITE</p>
-        <p><a href="about_website.html">
+        <p><a href="{% url 'website:about_website' %}">
             <button>About Website</button>
         </a></p>
     </article>

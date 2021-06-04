@@ -30,7 +30,7 @@ def about_page_view(request):
 
 def instructions_page_view(request):
     if request.user.is_authenticated:
-        return render(request, "website/about.html", {
+        return render(request, "website/instructions.html", {
             'message': "logged"
         })
     return render(request, 'website/instructions.html')
@@ -58,6 +58,13 @@ def about_website_page_view(request):
             'message': "logged"
         })
     return render(request, 'website/about_website.html')
+
+def about_page_view(request):
+    if request.user.is_authenticated:
+        return render(request, "website/about.html", {
+            'message': "logged"
+        })
+    return render(request, 'website/about.html')
 
 
 def list_contact_page_view(request):
