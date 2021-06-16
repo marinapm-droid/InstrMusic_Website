@@ -1,0 +1,113 @@
+{% extends 'website/base.html' %}
+{% load static %}
+
+<style>
+    {% block style %}
+
+        main {
+            grid-area: main;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            grid-template-rows: 1fr 0.5fr 4fr 0.1fr;
+            grid-template-areas:
+            "subheader subheader subheader subheader subheader"
+            ". . . . ."
+            ". . section . ."
+            "subfooter subfooter subfooter subfooter subfooter";
+        }
+
+
+
+        #section {
+            grid-area: section;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            grid-template-areas:
+            ". h2 figure . ."
+            ". h2 p p p"
+        }
+
+        #h2 {
+            grid-area: h2;
+            background-color: #eee;
+        }
+
+        #figure {
+            grid-area: figure;
+            background-color: #eee;
+            margin-left: 5%;
+
+        }
+
+        #p {
+            grid-area: p;
+            background-color: #eee;
+            margin-left: 5%;
+            width: 100%;
+
+        }
+
+
+        fieldset p {
+            color: rgb(71, 71, 71);
+        }
+
+        fieldset {
+            border: 0;
+        }
+
+        label {
+            position: relative;
+        }
+
+
+        @media screen and (max-width: 600px) {
+
+            main {
+                grid-area: main;
+                display: grid;
+                grid-template-columns: 1fr 10fr 1fr;
+                grid-template-rows: 1fr 0.5fr 4fr 1fr;
+                grid-template-areas:
+            "subheader subheader subheader"
+            ". sub_subheader ."
+            ". contact ."
+            "subfooter subfooter subfooter";
+            }
+        }
+
+    {% endblock style %}
+
+</style>
+
+
+
+
+{% block main %}
+
+    <article id="subheader">
+        Single Page Application
+        <p>
+
+            <button><a style="color:white" href="{% url 'website:spa' %}">Page 1</a></button>
+            <button class="button" data-section="1">Page 2</button>
+            <button class="button" data-section="2">Page 3</button>
+            <button class="button" data-section="3">Page 4</button>
+    </article>
+
+    <article id="section">
+        <figure id="figure">
+            <img src="{% static 'website/images/article_0.jpg' %}">
+        </figure>
+        <h2 id="h2">Lorde está de volta. “A paciência é uma virtude”</h2>
+        <p id="p">Boas notícias para os fãs de Lorde: a artista neozelandesa estará a preparar o seu regresso em 2021.
+            Lorde publicou a capa de um projeto intitulado "Solar Power", que poderá ser de um novo álbum ou de um
+            single.
+            Na mensagem que a acompanha pode ler-se "Estou a chegar a 2021. A paciência é uma virtude".
+            Em 2020, Lorde confirmou aos fãs ter gravado música nova com o produtor Jack Antonoff. "Melodrama", o seu
+            último álbum, data de 2017.</p>
+    </article>
+
+{% endblock main %}
+
+

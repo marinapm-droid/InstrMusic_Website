@@ -1,0 +1,108 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>About Us | InstrMusic</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+    <meta name="keywords" content="InstrMusic, Sensor, Sound, Effects, App, Android, OSC, Supercollider">
+    <meta name="description" content="Website sobre TFC InstrMusic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'website/images/icon_nav.ico' %}"/>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'website/css/estilos.css' %}"/>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+
+    <script type='text/javascript'>
+        var username = false;
+    </script>
+    <script src="../../static/website/javascript.js"></script>
+
+</head>
+
+
+<style>
+
+    #container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-areas:
+        ". h2 figure . ."
+        ". h2 p p p"
+    }
+
+    #h2 {
+        grid-area: h2;
+        background-color: #eee;
+    }
+
+    #figure {
+        grid-area: figure;
+        background-color: #eee;
+        margin-left: 5%;
+
+    }
+
+    #p {
+        grid-area: p;
+        background-color: #eee;
+        margin-left: 5%;
+        width: 100%;
+
+    }
+
+
+    fieldset p {
+        color: rgb(71, 71, 71);
+    }
+
+    fieldset {
+        border: 0;
+    }
+
+    label {
+        position: relative;
+    }
+
+
+    @media screen and (max-width: 600px) {
+
+        main {
+            grid-area: main;
+            display: grid;
+            grid-template-columns: 1fr 10fr 1fr;
+            grid-template-rows: 1fr 0.5fr 4fr 1fr;
+            grid-template-areas:
+            "subheader subheader subheader"
+            ". sub_subheader ."
+            ". contact ."
+            "subfooter subfooter subfooter";
+        }
+    }
+
+
+</style>
+
+<body>
+    <article id="container">
+        <figure id="figure">
+            <img src="{% static 'website/images/article_1.jpg' %}">
+        </figure>
+        <h2 id="h2">David Bruno: “No Graciano Saga em cada música morriam 6 pessoas.
+            Os portugueses querem lembrar a tragédia, a tristeza e a saudade” </h2>
+        <p id="p">Convidado do Posto Emissor, podcast semanal da BLITZ, David Bruno falou sobre "Palavras Cruzadas",
+            disco que lançou este ano, a meias com o amigo Mike El Nite, e sobre a atração que as canções
+            melancólicas exercem sobre o público português.
+            "As canções melancólicas são as que vivem mais tempo na nossa mente", acredita o músico de Gaia. "O Graciano
+            Saga: em cada música morriam seis pessoas. Na 'Vem Devagar Emigrante' há um acidente em que morre uma
+            família. A 'Amiga Emigrante' é sobre uma senhora que tem cancro e morre. As músicas [que ficam] são essas.
+            Se fores de Trás-os-Montes és melancólico na mesma, pensas nos teus primos que foram para a Suíça",
+            acrescenta,
+            afirmando que os portugueses habitualmente "querem lembrar a tragédia, a tristeza e a saudade".</p>
+    </article>
+</body>
+</html>

@@ -1,14 +1,14 @@
 import matplotlib
 from django.contrib.auth import authenticate, login, logout
 from django.db.models import Avg
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render
 from django.urls import reverse
 
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
-from .models import Contact, Comment, Quizz, Event, Location, Musician, Result_Quizz
+from .models import Contact, Comment, Quizz, Event, Musician
 from .forms import ContactForm, MusicianForm, QuizzForm, CommentForm, Result_QuizzForm, EventForm
 
 
@@ -26,6 +26,26 @@ def about_page_view(request):
             'message': "logged"
         })
     return render(request, 'website/about.html')
+
+
+def spa_page_view(request):
+    if request.user.is_authenticated:
+        return render(request, "website/spa.html", {
+            'message': "logged"
+        })
+    return render(request, 'website/spa.html')
+
+
+
+def section(request, num):
+    if num == 1:
+        return render(request, 'website/article_1.html')
+    elif num == 2:
+        return render(request, 'website/article_2.html')
+    elif num == 3:
+        return render(request, 'website/article_3.html')
+    else:
+        raise Http404("No such section")
 
 
 def instructions_page_view(request):
@@ -58,6 +78,7 @@ def about_website_page_view(request):
             'message': "logged"
         })
     return render(request, 'website/about_website.html')
+
 
 def about_page_view(request):
     if request.user.is_authenticated:
@@ -296,9 +317,7 @@ def quizz_results_page_view(request):
     plt.savefig('website/static/website/images/my_plot.png')
 
     if request.user.is_authenticated:
-
         context = {'quizz': q, 'quizz_results': obj, 'message': "logged"}
-
 
     return render(request, "website/quizz_results.html", context)
 
@@ -339,3 +358,27 @@ def new_event_page_view(request):
     context = {'form': form}
 
     return render(request, 'website/new_event.html', context)
+
+
+def article_1(request):
+    if request.user.is_authenticated:
+        return render(request, "website/article_1.html", {
+            'message': "logged"
+        })
+    return render(request, 'website/article_1.html')
+
+
+def article_2(request):
+    if request.user.is_authenticated:
+        return render(request, "website/article_2.html", {
+            'message': "logged"
+        })
+    return render(request, 'website/article_2.html')
+
+
+def article_3(request):
+    if request.user.is_authenticated:
+        return render(request, "website/article_2.html", {
+            'message': "logged"
+        })
+    return render(request, 'website/article_2.html')

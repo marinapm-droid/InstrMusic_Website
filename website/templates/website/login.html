@@ -135,15 +135,14 @@
         Log in
     </article>
 
-    <form action="{% url 'website:login' %}" method="POST">
+    <form id="login" action="{% url 'website:login' %}" method="POST">
         {% csrf_token %}
         Username
-        <input type="text" name="username" placeholder="username">
+        <input id="login_username" type="text" name="username" placeholder="username">
         Password
         <input type="password" name="password" placeholder="password">
         <input type="submit" value="Login">
     </form>
-
 {% endblock main %}
 
 

@@ -90,7 +90,6 @@
             <h2 >Participants</h2>
             {% for musician in musicians %}
                 <li>{{ musician.name }} {{ musician.surname }}</li>
-                <br>
             {% empty %}
                 <li>No musicians :(</li>
             {% endfor %}

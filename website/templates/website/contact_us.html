@@ -89,7 +89,17 @@
 
 </style>
 
+<script>
 
+    document.addEventListener('DOMContentLoaded', function () {
+        console.log('Dom content');
+        document.getElementById('id_name')..onfocus = () => {
+            console.log("oallalallalalalallal");
+            document.getElementById('label1').setAttribute('class', 'focusinput');
+        };
+
+    });
+</script>
 
 {% block main %}
 
@@ -108,7 +118,7 @@
         {% csrf_token %}
         <h2>Send us a message</h2>
         <hr>
-        <label>{{ form.name.label_tag }}</label>
+        <label id="label1">{{ form.name.label_tag }}</label>
         {{ form.name }}
         <label>{{ form.surname.label_tag }}</label>
         {{ form.surname }}

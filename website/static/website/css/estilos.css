@@ -57,6 +57,10 @@ label {
 
 }
 
+.focusinput{
+background-color: rgba(184, 14, 14, 0.38); !important;
+}
+
 h2 {
     font-size: 35px;
 }

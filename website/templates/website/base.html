@@ -18,6 +18,12 @@
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+
+    <script type='text/javascript'>
+        var username = false;
+    </script>
+    <script src="../../static/website/javascript.js"></script>
+
 </head>
 
 <style>
@@ -65,9 +71,12 @@
                 </li>
                 <li><a href="{% url 'website:download' %}"></i>Download</a></li>
                 <li><a href="{% url 'website:events' %}"></i>Events</a></li>
+                <li><a href="{% url 'website:spa' %}"></i>SPA</a></li>
+
                 {% block logout %}
                     {% if message %}
-                        <li><a href="{% url 'website:logout' %}"><i class="material-icons">logout</i></a></li>
+                        <li><a href="{% url 'website:logout' %}" id="logout"><i class="material-icons">logout</i></a>
+                        </li>
                     {% endif %}
                 {% endblock logout %}
 

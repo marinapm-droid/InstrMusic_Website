@@ -1,0 +1,105 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>About Us | InstrMusic</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+    <meta name="keywords" content="InstrMusic, Sensor, Sound, Effects, App, Android, OSC, Supercollider">
+    <meta name="description" content="Website sobre TFC InstrMusic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'website/images/icon_nav.ico' %}"/>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'website/css/estilos.css' %}"/>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+
+    <script type='text/javascript'>
+        var username = false;
+    </script>
+    <script src="../../static/website/javascript.js"></script>
+
+</head>
+
+
+<style>
+
+    #container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-areas:
+        ". h2 figure . ."
+        ". h2 p p p"
+    }
+
+    #h2 {
+        grid-area: h2;
+        background-color: #eee;
+    }
+
+    #figure {
+        grid-area: figure;
+        background-color: #eee;
+        margin-left: 5%;
+
+    }
+
+    #p {
+        grid-area: p;
+        background-color: #eee;
+        margin-left: 5%;
+        width: 100%;
+
+    }
+
+
+    fieldset p {
+        color: rgb(71, 71, 71);
+    }
+
+    fieldset {
+        border: 0;
+    }
+
+    label {
+        position: relative;
+    }
+
+
+    @media screen and (max-width: 600px) {
+
+        main {
+            grid-area: main;
+            display: grid;
+            grid-template-columns: 1fr 10fr 1fr;
+            grid-template-rows: 1fr 0.5fr 4fr 1fr;
+            grid-template-areas:
+            "subheader subheader subheader"
+            ". sub_subheader ."
+            ". contact ."
+            "subfooter subfooter subfooter";
+        }
+    }
+
+
+</style>
+
+<body>
+    <article id="container">
+        <figure id="figure">
+            <img src="{% static 'website/images/article_2.jpg' %}">
+        </figure>
+        <h2 id="h2">David Gilmour (Pink Floyd) está a trabalhar num novo álbum e promete voltar à guitarra elétrica  </h2>
+        <p id="p">Acompanhado pela sua esposa, Polly Samson, o ex-Pink Floyd afirmou que o disco poderá ser lançado no próximo ano - e que uma das razões pelas quais não está já pronto tem a ver com a pandemia.
+
+"Fazer com que outras pessoas ouçam, ajudem, colaborem tem sido impossível", admitiu. "Espero poder vir a tocar algumas canções com músicos a sério".
+
+O próximo disco, que sucederá a "Rattle That Lock", terá W"mais harpa" e marcará também o regresso de Gilmour à guitarra elétrica. "Mas a que tenho tocado não é muito 'Deus do Rock'", explicou.
+
+O regresso às digressões também estará na calha, mas sem pressas. "Tocar para um grupo de 10 mil pessoas, todas juntas, é neste momento um pesadelo. Não quero isso. Há que dar tempo ao tempo", disse.</p>
+    </article>
+</body>
+</html>

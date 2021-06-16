@@ -29,5 +29,10 @@ urlpatterns = [
     path('quizz_results', views.quizz_results_page_view, name='quizz_results'),
     path('result_comment', views.comment_results_page_view, name='result_comment'),
     path('new_event', views.new_event_page_view, name='new_event'),
+    path('spa', views.spa_page_view, name='spa'),
+    path("sections/<int:num>", views.section, name="section"),
+    path("article_1", views.article_1, name="article_1"),
+    path("article_2", views.article_2, name="article_2"),
+    path("article_3", views.article_3, name="article_3"),
 
 ]

@@ -1,0 +1,124 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>About Us | InstrMusic</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+    <meta name="keywords" content="InstrMusic, Sensor, Sound, Effects, App, Android, OSC, Supercollider">
+    <meta name="description" content="Website sobre TFC InstrMusic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'website/images/icon_nav.ico' %}"/>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'website/css/estilos.css' %}"/>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+
+    <script type='text/javascript'>
+        var username = false;
+    </script>
+    <script src="../../static/website/javascript.js"></script>
+
+</head>
+
+
+<style>
+
+    #container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-areas:
+        ". h2 figure . ."
+        ". h2 p p p"
+        " . iframe iframe . ."
+    }
+
+    iframe {
+        grid-area: iframe;
+        background-color: #eee;
+        margin-top: 5%;
+        margin-bottom: 10%;
+                width: 100%;
+
+    }
+
+    #h2 {
+        grid-area: h2;
+        background-color: #eee;
+    }
+
+    #figure {
+        grid-area: figure;
+        background-color: #eee;
+        margin-left: 5%;
+
+    }
+
+    #p {
+        grid-area: p;
+        background-color: #eee;
+        margin-left: 5%;
+        width: 100%;
+    }
+
+
+    fieldset p {
+        color: rgb(71, 71, 71);
+    }
+
+    fieldset {
+        border: 0;
+    }
+
+    label {
+        position: relative;
+    }
+
+
+    @media screen and (max-width: 600px) {
+
+        main {
+            grid-area: main;
+            display: grid;
+            grid-template-columns: 1fr 10fr 1fr;
+            grid-template-rows: 1fr 0.5fr 4fr 1fr;
+            grid-template-areas:
+            "subheader subheader subheader"
+            ". sub_subheader ."
+            ". contact ."
+            "subfooter subfooter subfooter";
+        }
+    }
+
+
+</style>
+
+<body>
+<article id="container">
+    <figure id="figure">
+        <img src="{% static 'website/images/article_3.jpg' %}">
+    </figure>
+    <h2 id="h2">Imparáveis! Os King Gizzard and the Lizard Wizard acabaram de lançar o 18º álbum </h2>
+    <p id="p">Os King Gizzard and the Lizard Wizard acabam de editar o seu 18º álbum de originais.
+
+        A banda australiana, uma das bandas rock mais prolíficas da última década, disponibilizaram "Butterfly 3000"
+        através do Bandcamp.
+
+        O disco foge aos seus antecessores, que apresentavam um rock mais musculado, focando-se desta feita numa pop
+        melódica e sonhadora.
+
+        "Butterfly 3000" é o sucessor direto de "L.W.", álbum que os King Gizzard and the Lizard Wizard editaram em
+        fevereiro - e que já era, ele próprio, um descendente direto de "K.G.",
+        lançado em novembro de 2020.
+    </p>
+     <iframe height="315" src="https://www.youtube.com/embed/_mzxF-yGs88" title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+
+</article>
+</body>
+</html>
