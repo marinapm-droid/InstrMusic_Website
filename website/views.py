@@ -36,7 +36,6 @@ def spa_page_view(request):
     return render(request, 'website/spa.html')
 
 
-
 def section(request, num):
     if num == 1:
         return render(request, 'website/article_1.html')
@@ -44,6 +43,8 @@ def section(request, num):
         return render(request, 'website/article_2.html')
     elif num == 3:
         return render(request, 'website/article_3.html')
+    elif num == 4:
+        return render(request, 'website/article_4.html')
     else:
         raise Http404("No such section")
 
@@ -378,7 +379,15 @@ def article_2(request):
 
 def article_3(request):
     if request.user.is_authenticated:
-        return render(request, "website/article_2.html", {
+        return render(request, "website/article_3.html", {
             'message': "logged"
         })
-    return render(request, 'website/article_2.html')
+    return render(request, 'website/article_3.html')
+
+
+def article_4(request):
+    if request.user.is_authenticated:
+        return render(request, "website/article_4.html", {
+            'message': "logged"
+        })
+    return render(request, 'website/article_4.html')

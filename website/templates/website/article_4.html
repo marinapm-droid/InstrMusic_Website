@@ -1,0 +1,75 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>About Us | InstrMusic</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+    <meta name="keywords" content="InstrMusic, Sensor, Sound, Effects, App, Android, OSC, Supercollider">
+    <meta name="description" content="Website sobre TFC InstrMusic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'website/images/icon_nav.ico' %}"/>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'website/css/estilos.css' %}"/>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+
+    <script type='text/javascript'>
+        var username = false;
+    </script>
+    <script src="../../static/website/javascript.js"></script>
+
+</head>
+
+
+<style>
+
+    #container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-areas:
+        ". h2 figure . ."
+        ". . p p p"
+    }
+
+
+    #h2 {
+        grid-area: h2;
+        background-color: #eee;
+        text-align: center;
+        padding-top: 100px;
+        padding-left: 100px;
+        padding-right: 100px;
+
+
+    }
+
+    #figure {
+        grid-area: figure;
+        background-color: #eee;
+        padding-top: 50%;
+
+    }
+
+
+
+
+
+
+
+</style>
+
+<body>
+<article id="container">
+    <figure id="figure">
+        <img src="{% static 'website/images/diretorio.png' %}">
+    </figure>
+    <h2 id="h2">Website realizado para PW. Serve como apoio ao TFC InstrMusic</h2>
+
+
+</article>
+</body>
+</html>

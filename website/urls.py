@@ -34,5 +34,6 @@ urlpatterns = [
     path("article_1", views.article_1, name="article_1"),
     path("article_2", views.article_2, name="article_2"),
     path("article_3", views.article_3, name="article_3"),
+    path("article_4", views.article_4, name="article_4"),
 
 ]

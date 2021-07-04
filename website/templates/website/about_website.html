@@ -5,16 +5,22 @@
 <style>
     {% block style %}
 
+        #img_mapa2 {
+            display: none;
+        }
+
         main {
             grid-area: main;
             display: grid;
             grid-template-columns: 1fr 10fr 1fr 2fr 1fr;
-            grid-template-rows: 0.2fr 0.2fr 0.5fr 1.3fr 0.6fr 0.5fr 0.5fr 0fr;
+            grid-template-rows: 0.2fr 0.2fr 0.5fr 1.3fr 0.1fr 0.5fr 0.2fr 0.5fr 0.5fr 0fr;
             grid-template-areas:
             "subheader subheader subheader subheader subheader"
-            ". sub_subheader  sub_subheader sub_subheader ."
+            ". sub_subheader sub_subheader sub_subheader ."
             ". video video video ."
             ". tecnicas tecnicas tecnicas ."
+            ". . . . ."
+            ". tecnologias tecnologias tecnologias ."
             ". inventario inventario inventario."
             ". layout layout layout ."
             "mapa mapa mapa mapa mapa"
@@ -36,6 +42,16 @@
             padding-right: 5%;
         }
 
+        #tecnologias {
+            grid-area: tecnologias;
+            padding: 0 2em;
+            font-family: Montserrat, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+            color: #444;
+            display: flex;
+            flex-direction: row-reverse;
+        }
 
         #tecnicas {
             grid-area: tecnicas;
@@ -48,12 +64,12 @@
             flex-direction: row-reverse;
         }
 
-        #tecnicas table,
+        #tecnicas table, #tecnologias table,
         #inventario table {
             width: 100%;
         }
 
-        #tecnicas p {
+        #tecnicas p, #tecnologias p {
             font-size: 60px !important;
             text-align: end;
         }
@@ -208,7 +224,7 @@
                 text-align: center;
             }
 
-            #tecnicas {
+            #tecnicas, #tecnologias {
                 flex-direction: column;
                 align-items: center;
             }
@@ -216,6 +232,11 @@
             #tecnicas p {
                 font-size: 90px !important;
             }
+
+            #tecnologias p {
+                font-size: 40px !important;
+            }
+
 
             #video {
                 flex-direction: column;
@@ -232,6 +253,7 @@
             #layout_txt,
             #inventario p,
             #tecnicas p,
+            #tecnologias p,
             #video,
             #mapa {
                 font-size: 40px !important;
@@ -252,13 +274,15 @@
                 grid-area: main;
                 display: grid;
                 grid-template-columns: 1fr 10fr 1fr 2fr 1fr;
-                grid-template-rows: 0.15fr 0fr 0fr 0.05fr 0.5fr 0.35fr 0fr 0fr 0fr;
+                grid-template-rows: 0.15fr 0fr 0fr 0.05fr 0.5fr 0fr 0fr 0fr 2.5fr 0fr;
                 grid-template-areas:
                 "subheader subheader subheader subheader subheader"
                 ". sub_subheader  sub_subheader sub_subheader ."
                 ". video video video ."
                 ". . . . ."
                 ". tecnicas tecnicas tecnicas ."
+
+                ". tecnologias tecnologias tecnologias ."
                 ". inventario inventario inventario."
                 ". layout layout layout ."
                 "mapa mapa mapa mapa mapa"
@@ -291,8 +315,42 @@
 
             #mapa img {
                 padding-top: 70px;
-                width: 70%;
+                padding-left: 100px;
+
+
             }
+
+            #img_mapa1 {
+                display: none
+            }
+
+            #img_mapa2 {
+                display: block;
+            }
+        }
+
+        @media screen and (max-width: 400px) {
+
+
+            main {
+                grid-area: main;
+                display: grid;
+                grid-template-columns: 1fr 10fr 1fr 2fr 1fr;
+                grid-template-rows: 0.15fr 0fr 0fr 0.05fr 0.5fr 0fr 0fr 0fr 0.8fr 0fr;
+                grid-template-areas:
+                "subheader subheader subheader subheader subheader"
+                ". sub_subheader  sub_subheader sub_subheader ."
+                ". video video video ."
+                ". . . . ."
+                ". tecnicas tecnicas tecnicas ."
+
+                ". tecnologias tecnologias tecnologias ."
+                ". inventario inventario inventario."
+                ". layout layout layout ."
+                "mapa mapa mapa mapa mapa"
+                "subfooter  subfooter subfooter subfooter subfooter";
+            }
+
         }
 
     {% endblock style %}
@@ -315,8 +373,8 @@
 
     <article id="video">
         <p>Vídeo do Website</p>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/CkE1TZooX6U"
-                title="YouTube video player" frameborder="0"
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/UUrbNEwUPxo" title="YouTube video player"
+                frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen></iframe>
     </article>
@@ -432,8 +490,64 @@
                     que possuem um link externo
                 </td>
             </tr>
+            <tr>
+                <td data-th="Características">Javascript
+                </td>
+                <td data-th="Técnicas"> criação de eventos, manipulação do DOM, e criação de comunicação assíncrona AJAX
+                    para comunicar com APIs
+                </td>
+                <td data-th="Exemplos">Página SAP, Formulários quando selecionados ficam com um background-color red,
+                    Avisos de sucesso de submissão
+                </td>
+            </tr>
+            <tr>
+                <td data-th="Características">Django
+                </td>
+                <td data-th="Técnicas"> Models, os Urls, Views, e os Templates com linguagem template, Forms
+                </td>
+                <td data-th="Exemplos">Criar eventos, Participar num evento, CRUD dos contactos
+                </td>
+            </tr>
         </table>
     </article>
+
+    <article id="tecnologias">
+        <p>Tecnologias Usadas</p>
+        <table class="rwd-table">
+            <tr>
+                <th>Tecnologia</th>
+                <th>Descrição</th>
+            </tr>
+            <tr>
+                <td data-th="Inventário">HTML</td>
+                <td data-th="Quantidade">HTML abreviação para a expressão inglesa HyperText Markup Language, que
+                    significa: "Linguagem de Marcação de Hipertexto" é uma linguagem de marcação utilizada na construção
+                    de páginas na Web.
+                </td>
+            </tr>
+            <tr>
+                <td data-th="Inventário">CSS</td>
+                <td data-th="Quantidade">Cascading Style Sheets é um mecanismo para adicionar estilo a um documento web.
+                    O código CSS pode ser aplicado diretamente nas tags ou ficar contido dentro das tags style. Também é
+                    possível, em vez de colocar a formatação dentro do documento, criar um link para um arquivo CSS que
+                    contém os estilos
+                </td>
+            </tr>
+            <tr>
+                <td data-th="Inventário">Django</td>
+                <td data-th="Quantidade">Django é um framework para desenvolvimento rápido para web, escrito em Python,
+                    que utiliza o padrão model-template-view.
+                </td>
+            </tr>
+            <tr>
+                <td data-th="Inventário">Javascript</td>
+                <td data-th="Quantidade">JavaScript é uma linguagem de programação interpretada estruturada, de script
+                    em alto nível com tipagem dinâmica fraca e multiparadigma.
+                </td>
+            </tr>
+        </table>
+    </article>
+
 
     <article id="inventario">
         <p>Inventário</p>
@@ -468,9 +582,9 @@
     <article id="mapa">
         <p>Mapa do Website</p>
         <figure>
-            <source srcset="{% static 'website/images/mapa_vertical.png' %}" media="(max-width: 1040px)">
-            <img src="{% static 'website/images/mapa.png' %}" alt="img_1">
-            <figcaption><a href="https://octopus.do/" target="_blank">mapa do website</a></figcaption>
+            <img id="img_mapa1" src="{% static 'website/images/mapa.png' %}" alt="img_1">
+            <img id="img_mapa2" src="{% static 'website/images/mapa_vertical.png' %}" alt="img_1">
+            <figcaption><a href="https://www.gloomaps.com" target="_blank">mapa do website</a></figcaption>
         </figure>
     </article>
 
